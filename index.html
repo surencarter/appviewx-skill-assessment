@@ -1,0 +1,1092 @@
+
+<title>AppViewX Skill Assessment</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap">
+
+<style>
+:root {
+  --bg:       #F2F3FA;
+  --surface:  #FFFFFF;
+  --s2:       #ECEEF8;
+  --border:   #DDE0F0;
+  --text:     #13162A;
+  --muted:    #5E6380;
+  --accent:   #5B45D9;
+  --a-lt:     #EAE7FB;
+  --a-mid:    #7B6FE8;
+  --green:    #1A9A6A;
+  --g-lt:     #E4F7F1;
+  --amber:    #C97A0A;
+  --am-lt:    #FEF3E2;
+  --red:      #C93535;
+  --r-lt:     #FDECEC;
+  --teal:     #0BADB5;
+  --t-lt:     #E2F7F8;
+  --grad:     linear-gradient(135deg, #4B38C8 0%, #7C3AED 50%, #A855F7 100%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:      #0C0E18;
+    --surface: #131720;
+    --s2:      #1A1F30;
+    --border:  #252B3D;
+    --text:    #E2E5F0;
+    --muted:   #7A80A0;
+    --accent:  #7B6FE8;
+    --a-lt:    #1A1730;
+    --a-mid:   #9B8FF8;
+    --green:   #2DBD87;
+    --g-lt:    #0C2018;
+    --amber:   #E8A030;
+    --am-lt:   #231600;
+    --red:     #E05555;
+    --r-lt:    #280C0C;
+    --teal:    #18C4CC;
+    --t-lt:    #0A2225;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:      #0C0E18;
+  --surface: #131720;
+  --s2:      #1A1F30;
+  --border:  #252B3D;
+  --text:    #E2E5F0;
+  --muted:   #7A80A0;
+  --accent:  #7B6FE8;
+  --a-lt:    #1A1730;
+  --a-mid:   #9B8FF8;
+  --green:   #2DBD87;
+  --g-lt:    #0C2018;
+  --amber:   #E8A030;
+  --am-lt:   #231600;
+  --red:     #E05555;
+  --r-lt:    #280C0C;
+  --teal:    #18C4CC;
+  --t-lt:    #0A2225;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CARD SHELL ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(0,0,0,.06);
+}
+
+/* ── SCREENS (hidden by default) ── */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ── PROGRESS BAR ── */
+.progress-wrap {
+  padding: 20px 28px 0;
+}
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.progress-label {
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.progress-count {
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.progress-track {
+  height: 4px;
+  background: var(--s2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--grad);
+  border-radius: 4px;
+  transition: width .4s ease;
+}
+
+/* ── WELCOME ── */
+.welcome-hero {
+  background: var(--grad);
+  padding: 40px 32px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.welcome-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+}
+.welcome-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  position: relative;
+}
+.welcome-hero h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  text-wrap: balance;
+  position: relative;
+}
+.welcome-hero p {
+  font-size: 14.5px;
+  color: rgba(255,255,255,.8);
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
+}
+.welcome-body {
+  padding: 28px 28px 32px;
+}
+.welcome-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.pill {
+  font-size: 12.5px;
+  font-weight: 500;
+  background: var(--s2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 20px;
+  padding: 5px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pill span { font-size: 14px; }
+.btn-primary {
+  width: 100%;
+  padding: 15px;
+  background: var(--grad);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .15s, transform .15s;
+}
+.btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+/* ── INTAKE ── */
+.intake-body { padding: 28px; }
+.intake-body h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  text-wrap: balance;
+}
+.intake-body .sub {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.field { margin-bottom: 18px; }
+.field label {
+  display: block;
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.role-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.role-btn {
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .15s, background .15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.role-btn:hover { border-color: var(--accent); background: var(--a-lt); }
+.role-btn.selected { border-color: var(--accent); background: var(--a-lt); color: var(--accent); font-weight: 600; }
+.role-btn .role-icon { font-size: 18px; }
+.exp-row {
+  display: flex;
+  gap: 8px;
+}
+.exp-btn {
+  flex: 1;
+  padding: 10px 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color .15s, background .15s;
+}
+.exp-btn:hover { border-color: var(--accent); background: var(--a-lt); }
+.exp-btn.selected { border-color: var(--accent); background: var(--a-lt); color: var(--accent); font-weight: 600; }
+
+/* ── QUIZ ── */
+.quiz-body { padding: 24px 28px 28px; }
+.question-area { min-height: 220px; }
+.q-category {
+  font-family: 'Sora', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.q-category::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.q-text {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 20px;
+  text-wrap: balance;
+}
+.options { display: flex; flex-direction: column; gap: 9px; }
+.opt-btn {
+  padding: 13px 16px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: border-color .12s, background .12s, transform .1s;
+  line-height: 1.45;
+}
+.opt-btn:hover:not(.locked) { border-color: var(--accent); background: var(--a-lt); transform: translateX(2px); }
+.opt-btn .opt-key {
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--s2);
+  border-radius: 4px;
+  padding: 2px 6px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.opt-btn.selected { border-color: var(--accent); background: var(--a-lt); }
+.opt-btn.selected .opt-key { background: var(--accent); color: #fff; }
+.opt-btn.correct { border-color: var(--green); background: var(--g-lt); }
+.opt-btn.correct .opt-key { background: var(--green); color: #fff; }
+.opt-btn.wrong { border-color: var(--red); background: var(--r-lt); opacity: .7; }
+.opt-btn.locked { cursor: default; }
+
+.quiz-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.feedback-msg {
+  font-size: 13px;
+  font-weight: 600;
+  flex: 1;
+}
+.feedback-msg.ok  { color: var(--green); }
+.feedback-msg.err { color: var(--red); }
+.btn-next {
+  padding: 10px 20px;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .15s;
+  opacity: 0;
+  pointer-events: none;
+}
+.btn-next.visible { opacity: 1; pointer-events: auto; }
+.btn-next:hover { opacity: .88; }
+
+/* ── PROCESSING ── */
+.processing-body {
+  padding: 60px 28px;
+  text-align: center;
+}
+.proc-spinner {
+  width: 56px;
+  height: 56px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  animation: spin .9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.proc-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.proc-sub { font-size: 13.5px; color: var(--muted); }
+.proc-steps {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.proc-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.proc-step.visible { opacity: 1; }
+.proc-step .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--border); flex-shrink: 0;
+  transition: background .3s;
+}
+.proc-step.done .dot { background: var(--green); }
+.proc-step.active .dot { background: var(--accent); animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* ── RESULTS ── */
+.results-hero {
+  background: var(--grad);
+  padding: 32px 28px 28px;
+  text-align: center;
+}
+.result-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.results-hero h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+  text-wrap: balance;
+}
+.results-hero .tagline {
+  font-size: 14px;
+  color: rgba(255,255,255,.8);
+}
+
+.results-body { padding: 24px 28px 32px; }
+
+.score-row {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.score-cell {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+.score-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 2px;
+  font-variant-numeric: tabular-nums;
+}
+.score-lbl { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+/* score bar */
+.score-bars { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.bar-row { display: flex; flex-direction: column; gap: 5px; }
+.bar-meta { display: flex; justify-content: space-between; align-items: center; }
+.bar-name { font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 600; color: var(--text); }
+.bar-val  { font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; color: var(--muted); }
+.bar-track { height: 7px; background: var(--s2); border-radius: 7px; overflow: hidden; }
+.bar-fill  { height: 100%; border-radius: 7px; transition: width 1s cubic-bezier(.4,0,.2,1); }
+
+/* recommendation */
+.rec-card {
+  background: var(--a-lt);
+  border: 1.5px solid var(--accent);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.rec-eyebrow {
+  font-family: 'Sora', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.rec-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  text-wrap: balance;
+}
+.rec-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.course-list { display: flex; flex-direction: column; gap: 8px; }
+.course-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color .12s, transform .12s;
+}
+.course-link:hover { border-color: var(--accent); transform: translateX(3px); }
+.course-link-icon { font-size: 18px; flex-shrink: 0; }
+.course-link-text { flex: 1; }
+.course-link-text b { display: block; font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 1px; }
+.course-link-text small { font-size: 12px; color: var(--muted); }
+.course-link-arrow { color: var(--muted); font-size: 16px; }
+.course-link:hover .course-link-arrow { color: var(--accent); }
+
+.cert-cta {
+  background: var(--grad);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  text-decoration: none;
+  transition: opacity .15s, transform .15s;
+}
+.cert-cta:hover { opacity: .92; transform: translateY(-2px); }
+.cert-cta-icon { font-size: 28px; flex-shrink: 0; }
+.cert-cta-text b { display: block; font-family: 'Sora', sans-serif; font-size: 14.5px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+.cert-cta-text small { font-size: 12.5px; color: rgba(255,255,255,.75); }
+.cert-cta-arrow { color: rgba(255,255,255,.7); font-size: 18px; margin-left: auto; }
+
+.restart-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color .12s, color .12s;
+}
+.restart-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 480px) {
+  body { padding: 16px 12px 48px; }
+  .card { border-radius: 16px; }
+  .welcome-hero { padding: 32px 20px; }
+  .welcome-body, .intake-body, .quiz-body, .results-body { padding: 20px; }
+  .role-grid { grid-template-columns: 1fr; }
+  .score-row { grid-template-columns: 1fr 1fr 1fr; }
+}
+</style>
+
+<!-- CARD -->
+<div class="card" id="app">
+
+  <!-- ══ SCREEN: WELCOME ══ -->
+  <div class="screen active" id="s-welcome">
+    <div class="welcome-hero">
+      <div class="welcome-icon">🎯</div>
+      <h1>Find Your AppViewX Learning Path</h1>
+      <p>Answer 12 quick questions and get a personalized course recommendation in under 5 minutes.</p>
+    </div>
+    <div class="welcome-body">
+      <div class="welcome-pills">
+        <div class="pill"><span>⏱️</span> 4–5 minutes</div>
+        <div class="pill"><span>📚</span> 12 questions</div>
+        <div class="pill"><span>🎓</span> Personalized path</div>
+        <div class="pill"><span>🆓</span> Free</div>
+      </div>
+      <button class="btn-primary" onclick="App.start()">Start Assessment →</button>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: INTAKE ══ -->
+  <div class="screen" id="s-intake">
+    <div class="intake-body">
+      <h2>Tell us a little about yourself</h2>
+      <p class="sub">This helps personalize your recommendation.</p>
+
+      <div class="field">
+        <label>Your role</label>
+        <div class="role-grid" id="role-grid">
+          <button class="role-btn" data-role="admin" onclick="App.selectRole(this)"><span class="role-icon">🔧</span>System Admin</button>
+          <button class="role-btn" data-role="dev" onclick="App.selectRole(this)"><span class="role-icon">💻</span>Developer</button>
+          <button class="role-btn" data-role="security" onclick="App.selectRole(this)"><span class="role-icon">🔐</span>Security Engineer</button>
+          <button class="role-btn" data-role="manager" onclick="App.selectRole(this)"><span class="role-icon">📊</span>IT Manager</button>
+          <button class="role-btn" data-role="partner" onclick="App.selectRole(this)"><span class="role-icon">🤝</span>Partner / Reseller</button>
+          <button class="role-btn" data-role="other" onclick="App.selectRole(this)"><span class="role-icon">👤</span>Other</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>AppViewX experience</label>
+        <div class="exp-row" id="exp-row">
+          <button class="exp-btn" data-exp="new" onclick="App.selectExp(this)">New to it</button>
+          <button class="exp-btn" data-exp="some" onclick="App.selectExp(this)">3–6 months</button>
+          <button class="exp-btn" data-exp="experienced" onclick="App.selectExp(this)">1+ year</button>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="intake-next" onclick="App.startQuiz()" style="opacity:.4;pointer-events:none">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: QUIZ ══ -->
+  <div class="screen" id="s-quiz">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Assessment</span>
+        <span class="progress-count" id="q-count">1 / 12</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="q-bar" style="width:8%"></div>
+      </div>
+    </div>
+    <div class="quiz-body">
+      <div class="question-area">
+        <div class="q-category" id="q-cat"></div>
+        <div class="q-text" id="q-text"></div>
+        <div class="options" id="q-opts"></div>
+      </div>
+      <div class="quiz-footer">
+        <div class="feedback-msg" id="q-fb"></div>
+        <button class="btn-next" id="btn-next" onclick="App.next()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: PROCESSING ══ -->
+  <div class="screen" id="s-proc">
+    <div class="processing-body">
+      <div class="proc-spinner"></div>
+      <div class="proc-title">Analyzing your results…</div>
+      <div class="proc-sub">Building your personalized learning path</div>
+      <div class="proc-steps" id="proc-steps">
+        <div class="proc-step" id="ps0"><div class="dot"></div><span>Scoring knowledge areas</span></div>
+        <div class="proc-step" id="ps1"><div class="dot"></div><span>Identifying skill gaps</span></div>
+        <div class="proc-step" id="ps2"><div class="dot"></div><span>Matching Academy courses</span></div>
+        <div class="proc-step" id="ps3"><div class="dot"></div><span>Generating your path</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: RESULTS ══ -->
+  <div class="screen" id="s-results">
+    <div class="results-hero">
+      <div class="result-badge" id="res-badge">🎓 Your Assessment Result</div>
+      <h2 id="res-title">Your Personalized Learning Path</h2>
+      <div class="tagline" id="res-tagline"></div>
+    </div>
+    <div class="results-body">
+
+      <div class="score-row">
+        <div class="score-cell">
+          <div class="score-num" id="sc-total" style="color:var(--accent)">—</div>
+          <div class="score-lbl">Overall score</div>
+        </div>
+        <div class="score-cell">
+          <div class="score-num" id="sc-pct" style="color:var(--teal)">—</div>
+          <div class="score-lbl">Percentile</div>
+        </div>
+        <div class="score-cell">
+          <div class="score-num" id="sc-level" style="color:var(--green)">—</div>
+          <div class="score-lbl">Level</div>
+        </div>
+      </div>
+
+      <div class="score-bars" id="score-bars"></div>
+
+      <div class="rec-card">
+        <div class="rec-eyebrow">Recommended learning path</div>
+        <div class="rec-title" id="rec-title"></div>
+        <div class="rec-desc" id="rec-desc"></div>
+        <div class="course-list" id="rec-courses"></div>
+      </div>
+
+      <a class="cert-cta" id="cert-cta" href="https://academy.appviewx.com" target="_blank">
+        <span class="cert-cta-icon">🏅</span>
+        <div class="cert-cta-text">
+          <b>Earn an AppViewX Certification</b>
+          <small>Professional certifications launching December 2026</small>
+        </div>
+        <span class="cert-cta-arrow">→</span>
+      </a>
+
+      <button class="restart-btn" onclick="App.restart()">↩ Retake assessment</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  // ─── CLM (Q 0-3) ───
+  {
+    cat: 'Certificate Lifecycle Management',
+    text: 'When AppViewX CLM discovers an expiring certificate, what can it do automatically?',
+    opts: [
+      { text: 'Renew it end-to-end with zero manual steps, including pushing to the endpoint', score: 2 },
+      { text: 'Send an email alert to the admin team', score: 1 },
+      { text: 'Block HTTPS traffic on that server', score: 0 },
+      { text: "I'm not sure", score: 0 }
+    ],
+    area: 'clm'
+  },
+  {
+    cat: 'Certificate Lifecycle Management',
+    text: 'Which of these best describes the CLM certificate discovery process in AppViewX?',
+    opts: [
+      { text: 'Active network scanning to find all TLS/SSL certificates across your infrastructure', score: 2 },
+      { text: 'Importing certificates manually from a spreadsheet', score: 0 },
+      { text: 'Checking only certificates issued by AppViewX PKIaaS', score: 0 },
+      { text: "I don't know", score: 0 }
+    ],
+    area: 'clm'
+  },
+  {
+    cat: 'Certificate Lifecycle Management',
+    text: 'What does "closed-loop automation" mean in AppViewX CLM?',
+    opts: [
+      { text: 'The full certificate lifecycle — discovery, issuance, renewal, and revocation — without human intervention', score: 2 },
+      { text: 'A firewall rule that blocks expired certificates', score: 0 },
+      { text: 'Periodic manual certificate audits', score: 1 },
+      { text: "I'm not sure", score: 0 }
+    ],
+    area: 'clm'
+  },
+  // ─── PKIaaS (Q 3-5) ───
+  {
+    cat: 'PKI as a Service',
+    text: 'AppViewX PKIaaS allows your organization to:',
+    opts: [
+      { text: 'Run a private Certificate Authority in the cloud without managing HSMs or physical hardware', score: 2 },
+      { text: 'Only use public certificates from DigiCert or Let\'s Encrypt', score: 0 },
+      { text: 'Replace all SSL certificates with SSH keys', score: 0 },
+      { text: "I don't know", score: 0 }
+    ],
+    area: 'pki'
+  },
+  {
+    cat: 'PKI as a Service',
+    text: 'In a PKIaaS setup, certificate policies define which of the following?',
+    opts: [
+      { text: 'Who can request certificates, validity periods, key types, and CA hierarchy', score: 2 },
+      { text: 'Network firewall rules and IP allow-lists', score: 0 },
+      { text: 'User account passwords and MFA settings', score: 0 },
+      { text: "I'm not sure", score: 0 }
+    ],
+    area: 'pki'
+  },
+  {
+    cat: 'PKI as a Service',
+    text: 'What is "crypto agility" and why does AppViewX support it?',
+    opts: [
+      { text: 'The ability to rapidly switch cryptographic algorithms — critical for post-quantum readiness', score: 2 },
+      { text: 'Faster certificate issuance measured in milliseconds', score: 0 },
+      { text: 'Encrypting API payloads between AppViewX services', score: 0 },
+      { text: "I don't know", score: 0 }
+    ],
+    area: 'pki'
+  },
+  // ─── Automation (Q 6-8) ───
+  {
+    cat: 'Automation & Workflows',
+    text: 'AppViewX Visual Workflows allow you to:',
+    opts: [
+      { text: 'Design automated certificate workflows using a drag-and-drop editor — no coding required', score: 2 },
+      { text: 'Create UI mockups for the AppViewX dashboard', score: 0 },
+      { text: 'Schedule database backups and server snapshots', score: 0 },
+      { text: "I'm not sure", score: 0 }
+    ],
+    area: 'auto'
+  },
+  {
+    cat: 'Automation & Workflows',
+    text: 'Which AppViewX product handles automatic certificate issuance for containers and Kubernetes workloads?',
+    opts: [
+      { text: 'AVX Kubernetes — integrates with cert-manager and the Kubernetes API natively', score: 2 },
+      { text: 'AVX SSH — issues keys to pods on startup', score: 0 },
+      { text: 'AVX ADC — manages load balancer certificates only', score: 0 },
+      { text: "I don't know", score: 0 }
+    ],
+    area: 'auto'
+  },
+  {
+    cat: 'Automation & Workflows',
+    text: 'AppViewX automation can integrate with which external CA and vault systems?',
+    opts: [
+      { text: 'Microsoft CA, DigiCert, Venafi, HashiCorp Vault, and many more via connectors', score: 2 },
+      { text: "Only AppViewX's own internal CA", score: 0 },
+      { text: 'AWS Certificate Manager only', score: 0 },
+      { text: "I'm not sure", score: 0 }
+    ],
+    area: 'auto'
+  },
+  // ─── General (Q 9-11) ───
+  {
+    cat: 'AppViewX Platform',
+    text: 'AVX SSH in AppViewX manages:',
+    opts: [
+      { text: 'The full lifecycle of SSH keys — creation, distribution, rotation, and revocation', score: 2 },
+      { text: 'SSL certificate renewal for web servers only', score: 0 },
+      { text: 'Server login passwords and MFA tokens', score: 0 },
+      { text: "I don't know", score: 0 }
+    ],
+    area: 'gen'
+  },
+  {
+    cat: 'AppViewX Platform',
+    text: 'AppViewX Code Signing helps your organization:',
+    opts: [
+      { text: 'Ensure software builds are signed and their integrity is cryptographically verifiable', score: 2 },
+      { text: 'Write more secure application code during development', score: 0 },
+      { text: 'Encrypt database fields and application secrets', score: 0 },
+      { text: "I don't know", score: 0 }
+    ],
+    area: 'gen'
+  },
+  {
+    cat: 'AppViewX Platform',
+    text: 'What is the primary role of AVX ADC in the AppViewX product suite?',
+    opts: [
+      { text: 'Application Delivery Controller — manages load balancer and ADC certificate bindings', score: 2 },
+      { text: 'An analytics dashboard for certificate health scoring', score: 0 },
+      { text: 'An Active Directory connector for user provisioning', score: 0 },
+      { text: "I don't know", score: 0 }
+    ],
+    area: 'gen'
+  }
+];
+
+const COURSES = {
+  foundational: { label: 'Foundational Course', desc: 'Introduction to all AppViewX products — videos, PDFs & quizzes', icon: '🌱', url: 'https://academy.appviewx.com/page/foundational-courses', time: '1–2 hrs' },
+  professional:  { label: 'Professional Course — CLM', desc: 'Deep-dive certification path for certificate lifecycle management', icon: '🎓', url: 'https://academy.appviewx.com/page/professional-courses', time: '4–6 hrs' },
+  automation:    { label: 'AVX Automation', desc: 'Visual Workflows, connectors, and advanced automation', icon: '⚙️', url: 'https://academy.appviewx.com/page/avx-automation', time: '3–4 hrs' },
+};
+
+const App = (() => {
+  let state = { role: null, exp: null, qi: 0, scores: { clm:0, pki:0, auto:0, gen:0 }, answers: [] };
+
+  function show(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('s-' + id).classList.add('active');
+  }
+
+  function start() { show('intake'); }
+
+  function selectRole(el) {
+    document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    state.role = el.dataset.role;
+    checkIntake();
+  }
+
+  function selectExp(el) {
+    document.querySelectorAll('.exp-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    state.exp = el.dataset.exp;
+    checkIntake();
+  }
+
+  function checkIntake() {
+    const btn = document.getElementById('intake-next');
+    if (state.role && state.exp) {
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+    }
+  }
+
+  function startQuiz() {
+    if (!state.role || !state.exp) return;
+    state.qi = 0;
+    state.scores = { clm:0, pki:0, auto:0, gen:0 };
+    state.answers = [];
+    show('quiz');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = QUESTIONS[state.qi];
+    const pct = Math.round((state.qi / QUESTIONS.length) * 100);
+    document.getElementById('q-bar').style.width = Math.max(pct, 5) + '%';
+    document.getElementById('q-count').textContent = (state.qi + 1) + ' / ' + QUESTIONS.length;
+    document.getElementById('q-cat').textContent = q.cat;
+    document.getElementById('q-text').textContent = q.text;
+    document.getElementById('q-fb').textContent = '';
+    document.getElementById('q-fb').className = 'feedback-msg';
+    document.getElementById('btn-next').classList.remove('visible');
+
+    const opts = document.getElementById('q-opts');
+    opts.innerHTML = '';
+    q.opts.forEach((o, i) => {
+      const keys = ['A','B','C','D'];
+      const btn = document.createElement('button');
+      btn.className = 'opt-btn';
+      btn.innerHTML = `<span class="opt-key">${keys[i]}</span>${o.text}`;
+      btn.onclick = () => selectOpt(i, btn, q, o.score);
+      opts.appendChild(btn);
+    });
+  }
+
+  let locked = false;
+  function selectOpt(i, el, q, score) {
+    if (locked) return;
+    locked = true;
+    const allBtns = document.querySelectorAll('.opt-btn');
+    allBtns.forEach(b => b.classList.add('locked'));
+    el.classList.add('selected');
+
+    const correct = q.opts.reduce((best, o, idx) => o.score > q.opts[best].score ? idx : best, 0);
+
+    setTimeout(() => {
+      allBtns[correct].classList.remove('selected');
+      allBtns[correct].classList.add('correct');
+      if (i !== correct) el.classList.add('wrong');
+
+      const fb = document.getElementById('q-fb');
+      if (score === 2) { fb.textContent = '✓ Correct'; fb.className = 'feedback-msg ok'; }
+      else if (score === 1) { fb.textContent = '~ Partially correct'; fb.className = 'feedback-msg'; }
+      else { fb.textContent = '✗ Incorrect'; fb.className = 'feedback-msg err'; }
+
+      state.scores[q.area] += score;
+      state.answers.push({ qi: state.qi, score });
+      document.getElementById('btn-next').classList.add('visible');
+      locked = false;
+    }, 250);
+  }
+
+  function next() {
+    state.qi++;
+    if (state.qi >= QUESTIONS.length) {
+      show('proc');
+      runProcessing();
+    } else {
+      renderQuestion();
+    }
+  }
+
+  function runProcessing() {
+    const steps = ['ps0','ps1','ps2','ps3'];
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i > 0) {
+        document.getElementById(steps[i-1]).classList.remove('active');
+        document.getElementById(steps[i-1]).classList.add('done');
+      }
+      if (i < steps.length) {
+        document.getElementById(steps[i]).classList.add('visible', 'active');
+        i++;
+      } else {
+        clearInterval(iv);
+        setTimeout(() => showResults(), 500);
+      }
+    }, 600);
+  }
+
+  function showResults() {
+    const { clm, pki, auto, gen } = state.scores;
+    const total = clm + pki + auto + gen;
+    const maxPer = 6; // 3 questions × 2pts each
+    const max = 24;
+
+    // Score visuals
+    document.getElementById('sc-total').textContent = total + '/' + max;
+    const pct = Math.round((total / max) * 100);
+    document.getElementById('sc-pct').textContent = pct < 40 ? 'Beginner' : pct < 70 ? 'Intermediate' : 'Advanced';
+    document.getElementById('sc-level').textContent = pct < 40 ? '🌱' : pct < 70 ? '📈' : '🏆';
+
+    // Bars
+    const areas = [
+      { key: 'clm', label: 'CLM', val: clm, color: '#5B45D9' },
+      { key: 'pki', label: 'PKIaaS', val: pki, color: '#0BADB5' },
+      { key: 'auto', label: 'Automation', val: auto, color: '#C97A0A' },
+      { key: 'gen', label: 'Platform', val: gen, color: '#1A9A6A' }
+    ];
+    const barsEl = document.getElementById('score-bars');
+    barsEl.innerHTML = '';
+    areas.forEach(a => {
+      const pctA = Math.round((a.val / maxPer) * 100);
+      barsEl.innerHTML += `
+        <div class="bar-row">
+          <div class="bar-meta">
+            <span class="bar-name">${a.label}</span>
+            <span class="bar-val">${a.val}/${maxPer}</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:0%;background:${a.color}" data-target="${pctA}"></div></div>
+        </div>`;
+    });
+    setTimeout(() => {
+      document.querySelectorAll('.bar-fill').forEach(el => {
+        el.style.width = el.dataset.target + '%';
+      });
+    }, 100);
+
+    // Determine recommendation
+    let recTitle, recDesc, recCourses, badgeText;
+
+    const weakest = areas.sort((a,b) => a.val - b.val)[0].key;
+    const expBonus = state.exp === 'experienced' ? 4 : state.exp === 'some' ? 2 : 0;
+    const adjustedTotal = total + expBonus;
+
+    if (adjustedTotal < 12) {
+      // Beginner path
+      badgeText = '🌱 Foundational Path';
+      recTitle = 'Start with the Foundational Track';
+      recDesc = `Your results show you're in the early stages of AppViewX knowledge — and that's completely fine. The Foundational courses give you a solid grounding across all products in just 1–2 hours each. Start there, then move to Professional once you're comfortable.`;
+      recCourses = ['foundational', 'automation'];
+    } else if (adjustedTotal < 20) {
+      // Intermediate path
+      badgeText = '📈 Professional Path';
+      recTitle = 'Ready for Professional Courses';
+      recDesc = `You have a solid foundation. Your ${weakest === 'clm' ? 'CLM' : weakest === 'pki' ? 'PKIaaS' : weakest === 'auto' ? 'Automation' : 'Platform'} score is your biggest growth area — focus there first. The Professional CLM course will challenge you and prepare you for certification.`;
+      recCourses = ['professional', 'automation'];
+    } else {
+      // Advanced / Cert ready
+      badgeText = '🏆 Certification Ready';
+      recTitle = 'You\'re Certification Ready';
+      recDesc = `Outstanding results — you demonstrate advanced AppViewX knowledge across all areas. You're a strong candidate for the AppViewX Professional Certification launching in December. Complete the Professional course to verify your readiness, then register for the exam.`;
+      recCourses = ['professional', 'automation'];
+    }
+
+    document.getElementById('res-badge').textContent = badgeText;
+    document.getElementById('res-title').textContent = recTitle;
+    document.getElementById('res-tagline').textContent = `Score: ${total}/24 · ${state.role ? state.role.charAt(0).toUpperCase() + state.role.slice(1) : 'Learner'}`;
+    document.getElementById('rec-title').textContent = recTitle;
+    document.getElementById('rec-desc').textContent = recDesc;
+
+    const courseEl = document.getElementById('rec-courses');
+    courseEl.innerHTML = '';
+    recCourses.forEach(key => {
+      const c = COURSES[key];
+      courseEl.innerHTML += `
+        <a class="course-link" href="${c.url}" target="_blank">
+          <span class="course-link-icon">${c.icon}</span>
+          <div class="course-link-text">
+            <b>${c.label}</b>
+            <small>${c.desc} · ${c.time}</small>
+          </div>
+          <span class="course-link-arrow">→</span>
+        </a>`;
+    });
+
+    show('results');
+  }
+
+  function restart() {
+    state = { role: null, exp: null, qi: 0, scores: { clm:0, pki:0, auto:0, gen:0 }, answers: [] };
+    document.querySelectorAll('.role-btn, .exp-btn').forEach(b => b.classList.remove('selected'));
+    ['ps0','ps1','ps2','ps3'].forEach(id => {
+      const el = document.getElementById(id);
+      el.classList.remove('visible','active','done');
+    });
+    locked = false;
+    show('welcome');
+  }
+
+  return { start, selectRole, selectExp, startQuiz, next, restart };
+})();
+</script>
