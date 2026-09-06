@@ -1,5 +1,7 @@
 # AppViewX Skill Assessment
 
+**Live:** https://appviewx-skill-assessment.vercel.app
+
 Interactive 12-question knowledge assessment for the [AppViewX Academy](https://academy.appviewx.com). Diagnoses learner skill gaps across CLM, PKIaaS, Automation, and Platform knowledge, then recommends a personalized learning path.
 
 ## Features
@@ -13,6 +15,8 @@ Interactive 12-question knowledge assessment for the [AppViewX Academy](https://
 ## Deploy
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/surencarter/appviewx-skill-assessment)
+
+**Deployed at:** https://appviewx-skill-assessment.vercel.app
 
 Or manually:
 1. Fork this repo
