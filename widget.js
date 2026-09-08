@@ -32,7 +32,7 @@
       'height:500px!important;max-height:calc(100vh - 110px)!important;min-height:280px!important;',
       'background:#ffffff!important;border-radius:16px!important;',
       'box-shadow:0 8px 40px rgba(0,0,0,.2)!important;',
-      'display:flex!important;flex-direction:column!important;overflow:hidden!important;',
+      'display:flex!important;flex-direction:column!important;overflow:clip!important;',
       'font-family:-apple-system,"Segoe UI",Arial,sans-serif!important;',
       'font-size:14px!important;',
       'transition:opacity .2s,transform .2s!important;',
@@ -44,6 +44,7 @@
       'background:linear-gradient(135deg,#6D28D9,#4F46E5)!important;',
       'padding:13px 14px!important;display:flex!important;align-items:center!important;',
       'gap:10px!important;flex-shrink:0!important;',
+      'border-radius:16px 16px 0 0!important;',
     '}',
     '#avx-hdr-ic{',
       'width:36px!important;height:36px!important;border-radius:50%!important;',
@@ -218,6 +219,27 @@
     inp.style.height = 'auto';
     inp.style.height = Math.min(inp.scrollHeight, 90) + 'px';
   }
+
+  /* ── Scroll isolation (belt-and-suspenders for Skilljar) ────── */
+  msgsEl.addEventListener('wheel', function(e) {
+    e.stopPropagation();
+    var atTop    = msgsEl.scrollTop === 0 && e.deltaY < 0;
+    var atBottom = msgsEl.scrollTop + msgsEl.clientHeight >= msgsEl.scrollHeight - 1 && e.deltaY > 0;
+    if (!atTop && !atBottom) e.preventDefault();
+    msgsEl.scrollTop += e.deltaY;
+  }, { passive: false });
+
+  var _touchY = 0;
+  msgsEl.addEventListener('touchstart', function(e) { _touchY = e.touches[0].clientY; }, { passive: true });
+  msgsEl.addEventListener('touchmove', function(e) {
+    var delta = _touchY - e.touches[0].clientY;
+    _touchY = e.touches[0].clientY;
+    msgsEl.scrollTop += delta;
+    e.stopPropagation();
+    var atTop    = msgsEl.scrollTop <= 0 && delta < 0;
+    var atBottom = msgsEl.scrollTop + msgsEl.clientHeight >= msgsEl.scrollHeight - 1 && delta > 0;
+    if (!atTop && !atBottom) e.preventDefault();
+  }, { passive: false });
 
   /* ── Open / Close ────────────────────────────────────────────── */
   function openChat() {
