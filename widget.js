@@ -58,6 +58,7 @@
     '#avx-hdr-sub{color:rgba(255,255,255,.75)!important;font-size:11px!important;margin:2px 0 0!important;line-height:1.2!important;}',
     '#avx-cls{',
       'all:unset;',
+      'position:relative!important;',
       'width:28px!important;height:28px!important;border-radius:6px!important;',
       'background:rgba(255,255,255,.15)!important;color:#fff!important;',
       'cursor:pointer!important;display:flex!important;align-items:center!important;',
@@ -129,6 +130,7 @@
     '#avx-inp::placeholder{color:#9CA3AF!important;}',
     '#avx-snd{',
       'all:unset;',
+      'position:relative!important;',
       'width:36px!important;height:36px!important;border-radius:8px!important;',
       'background:linear-gradient(135deg,#6D28D9,#4F46E5)!important;',
       'color:#fff!important;cursor:pointer!important;',
@@ -139,6 +141,12 @@
     '#avx-snd:hover{opacity:.85!important;}',
     '#avx-snd[disabled]{opacity:.35!important;cursor:not-allowed!important;}',
     '#avx-credit{text-align:center!important;font-size:10px!important;color:#9CA3AF!important;padding:3px 10px 7px!important;background:#fff!important;flex-shrink:0!important;}',
+    // Neutralize Skilljar's button::before focus-overlay — it uses position:absolute
+    // without a positioned ancestor, which would expand to cover the entire widget window
+    '#avx-btn::before,#avx-btn::after,#avx-cls::before,#avx-cls::after,#avx-snd::before,#avx-snd::after{',
+      'content:none!important;display:none!important;position:static!important;',
+      'width:0!important;height:0!important;',
+    '}',
   ].join('');
   document.head.appendChild(style);
 
