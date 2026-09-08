@@ -2,8 +2,8 @@
   if (window.__avxWidget) return;
   window.__avxWidget = true;
 
-  var API      = 'https://appviewx-skill-assessment.vercel.app/api/chat';
-  var LOGO     = 'https://cc.sj-cdn.net/instructor/1n4vvi18nnyfs-appviewx/themes/119fgrg1k6qdg/header-logo.1774413970.png';
+  var API     = 'https://appviewx-skill-assessment.vercel.app/api/chat';
+  var ICON    = 'https://cc.sj-cdn.net/instructor/1n4vvi18nnyfs-appviewx/themes/119fgrg1k6qdg/favicon.1774413970.png';
   var messages = [];
   var isOpen   = false;
   var isTyping = false;
@@ -12,29 +12,27 @@
   /* ── CSS ─────────────────────────────────────────────────────── */
   var style = document.createElement('style');
   style.textContent = [
-    /* Toggle button */
     '#avx-btn{',
       'all:unset;',
       'position:fixed!important;bottom:24px!important;right:24px!important;',
       'z-index:2147483647!important;',
-      'width:54px!important;height:54px!important;border-radius:50%!important;',
-      'background:#fff!important;',
+      'width:56px!important;height:56px!important;border-radius:50%!important;',
+      'background:#fff url("' + ICON + '") no-repeat center/62%!important;',
       'box-shadow:0 4px 20px rgba(0,0,0,.18)!important;',
-      'cursor:pointer!important;display:flex!important;',
-      'align-items:center!important;justify-content:center!important;',
+      'cursor:pointer!important;',
       'transition:transform .18s,box-shadow .18s!important;',
-      'border:none!important;outline:none!important;overflow:hidden!important;',
-      'padding:0!important;',
+      'border:none!important;outline:none!important;',
+      'font-size:0!important;',
+    '}',
+    '#avx-btn.avx-open{',
+      'background:#5B21B6!important;',
+      'font-size:22px!important;color:#fff!important;',
+      'display:flex!important;align-items:center!important;justify-content:center!important;',
     '}',
     '#avx-btn:hover{transform:scale(1.08)!important;box-shadow:0 6px 24px rgba(0,0,0,.22)!important;}',
-    '#avx-btn img{width:34px!important;height:34px!important;object-fit:contain!important;display:block!important;}',
-    '#avx-btn-close{font-size:20px!important;color:#6D28D9!important;line-height:1!important;display:none!important;}',
-    '#avx-btn.open #avx-btn-close{display:block!important;}',
-    '#avx-btn.open #avx-btn-logo{display:none!important;}',
 
-    /* Chat window */
     '#avx-win{',
-      'position:fixed!important;bottom:88px!important;right:24px!important;',
+      'position:fixed!important;bottom:90px!important;right:24px!important;',
       'z-index:2147483646!important;',
       'width:370px!important;max-width:calc(100vw - 32px)!important;',
       'height:520px!important;max-height:calc(100vh - 110px)!important;min-height:300px!important;',
@@ -43,38 +41,30 @@
       'display:flex!important;flex-direction:column!important;overflow:clip!important;',
       'font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;',
       'font-size:14px!important;',
-      'transition:opacity .2s,transform .2s,width .2s,height .2s!important;',
+      'transition:opacity .2s,transform .2s,width .25s,height .25s!important;',
       'transform-origin:bottom right!important;',
     '}',
     '#avx-win.avx-hidden{opacity:0!important;transform:scale(.92) translateY(8px)!important;pointer-events:none!important;}',
-    '#avx-win.avx-max{',
-      'width:min(680px,calc(100vw - 32px))!important;',
-      'height:min(680px,calc(100vh - 110px))!important;',
-    '}',
+    '#avx-win.avx-max{width:min(680px,calc(100vw - 32px))!important;height:min(680px,calc(100vh - 110px))!important;}',
 
-    /* Header */
     '#avx-hdr{',
       'background:linear-gradient(135deg,#5B21B6,#4F46E5)!important;',
       'padding:12px 14px!important;display:flex!important;align-items:center!important;',
-      'gap:10px!important;flex-shrink:0!important;',
-      'border-radius:16px 16px 0 0!important;',
+      'gap:10px!important;flex-shrink:0!important;border-radius:16px 16px 0 0!important;',
     '}',
     '#avx-hdr-ic{',
       'width:38px!important;height:38px!important;border-radius:10px!important;',
-      'background:#fff!important;display:flex!important;',
-      'align-items:center!important;justify-content:center!important;',
-      'flex-shrink:0!important;overflow:hidden!important;padding:4px!important;',
+      'background:#fff!important;display:flex!important;padding:5px!important;',
+      'align-items:center!important;justify-content:center!important;flex-shrink:0!important;',
+      'overflow:hidden!important;',
     '}',
     '#avx-hdr-ic img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;}',
     '#avx-hdr-txt{flex:1!important;min-width:0!important;}',
     '#avx-hdr-name{color:#fff!important;font-size:14px!important;font-weight:700!important;margin:0!important;line-height:1.25!important;}',
-    '#avx-hdr-sub{color:rgba(255,255,255,.7)!important;font-size:11px!important;margin:2px 0 0!important;line-height:1.2!important;}',
-
-    /* Header buttons */
-    '#avx-hdr-btns{display:flex!important;gap:4px!important;flex-shrink:0!important;}',
+    '#avx-hdr-sub{color:rgba(255,255,255,.72)!important;font-size:11px!important;margin:2px 0 0!important;}',
+    '#avx-hdr-btns{display:flex!important;gap:4px!important;align-items:center!important;}',
     '#avx-max,#avx-cls{',
-      'all:unset;',
-      'position:relative!important;',
+      'all:unset;position:relative!important;',
       'width:28px!important;height:28px!important;border-radius:6px!important;',
       'background:rgba(255,255,255,.15)!important;color:#fff!important;',
       'cursor:pointer!important;display:flex!important;align-items:center!important;',
@@ -83,7 +73,6 @@
     '}',
     '#avx-max:hover,#avx-cls:hover{background:rgba(255,255,255,.3)!important;}',
 
-    /* Messages area */
     '#avx-msgs{',
       'flex:1!important;min-height:80px!important;overflow-y:auto!important;',
       'padding:16px 14px!important;',
@@ -98,7 +87,6 @@
     '#avx-msgs::-webkit-scrollbar-thumb{background:#D1D5DB!important;border-radius:4px!important;}',
     '#avx-msgs::-webkit-scrollbar-track{background:transparent!important;}',
 
-    /* Message bubbles */
     '.avx-m{',
       'max-width:85%!important;padding:10px 14px!important;border-radius:14px!important;',
       'font-size:13.5px!important;line-height:1.6!important;word-break:break-word!important;',
@@ -124,7 +112,6 @@
     '.avx-b p:last-child{margin-bottom:0!important;}',
     '.avx-b code{background:#F3F4F6!important;padding:1px 5px!important;border-radius:4px!important;font-size:12px!important;font-family:monospace!important;}',
 
-    /* Typing indicator */
     '#avx-typ{',
       'align-self:flex-start!important;background:#fff!important;',
       'border-radius:14px!important;border-bottom-left-radius:4px!important;',
@@ -138,7 +125,6 @@
     '.avx-dot:nth-child(3){animation-delay:.4s!important;}',
     '@keyframes avxb{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}',
 
-    /* Footer */
     '#avx-foot-row{',
       'display:flex!important;gap:8px!important;padding:10px 12px!important;',
       'border-top:1px solid #E5E7EB!important;background:#fff!important;',
@@ -154,30 +140,19 @@
     '#avx-inp:focus{border-color:#5B21B6!important;background:#fff!important;}',
     '#avx-inp::placeholder{color:#9CA3AF!important;}',
     '#avx-snd{',
-      'all:unset;',
-      'position:relative!important;',
+      'all:unset;position:relative!important;',
       'width:36px!important;height:36px!important;border-radius:9px!important;',
       'background:linear-gradient(135deg,#5B21B6,#4F46E5)!important;',
       'color:#fff!important;cursor:pointer!important;',
       'display:flex!important;align-items:center!important;justify-content:center!important;',
-      'flex-shrink:0!important;font-size:16px!important;',
-      'transition:opacity .15s!important;',
+      'flex-shrink:0!important;font-size:16px!important;transition:opacity .15s!important;',
     '}',
     '#avx-snd:hover{opacity:.85!important;}',
     '#avx-snd[disabled]{opacity:.35!important;cursor:not-allowed!important;}',
-    '#avx-credit{',
-      'text-align:center!important;font-size:10px!important;color:#9CA3AF!important;',
-      'padding:4px 10px 8px!important;background:#fff!important;flex-shrink:0!important;',
-    '}',
+    '#avx-credit{text-align:center!important;font-size:10px!important;color:#9CA3AF!important;padding:4px 10px 8px!important;background:#fff!important;flex-shrink:0!important;}',
 
-    /* Neutralize Skilljar button::before/after overlays */
-    '#avx-btn::before,#avx-btn::after,',
-    '#avx-cls::before,#avx-cls::after,',
-    '#avx-max::before,#avx-max::after,',
-    '#avx-snd::before,#avx-snd::after{',
-      'content:none!important;display:none!important;position:static!important;',
-      'width:0!important;height:0!important;',
-    '}',
+    /* Neutralize Skilljar button::before/after that creates invisible click-blocking overlays */
+    '#avx-btn::before,#avx-btn::after,#avx-cls::before,#avx-cls::after,#avx-max::before,#avx-max::after,#avx-snd::before,#avx-snd::after{content:none!important;display:none!important;position:static!important;width:0!important;height:0!important;}',
   ].join('');
   document.head.appendChild(style);
 
@@ -185,9 +160,6 @@
   var btn = document.createElement('button');
   btn.id = 'avx-btn';
   btn.setAttribute('aria-label', 'Open AppViewX Academy Assistant');
-  btn.innerHTML =
-    '<img id="avx-btn-logo" src="' + LOGO + '" alt="AppViewX" />' +
-    '<span id="avx-btn-close">&#x2715;</span>';
 
   var win = document.createElement('div');
   win.id = 'avx-win';
@@ -195,7 +167,7 @@
 
   win.innerHTML =
     '<div id="avx-hdr">' +
-      '<div id="avx-hdr-ic"><img src="' + LOGO + '" alt="AppViewX" /></div>' +
+      '<div id="avx-hdr-ic"><img src="' + ICON + '" alt="AppViewX" /></div>' +
       '<div id="avx-hdr-txt">' +
         '<div id="avx-hdr-name">AppViewX Academy Assistant</div>' +
         '<div id="avx-hdr-sub">Powered by Claude &middot; Ask me anything</div>' +
@@ -235,7 +207,7 @@
       .replace(/(https?:\/\/[^\s<"]+)/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener noreferrer">'+u+'</a>';})
       .replace(/^#{1,3}\s+(.+)$/gm,'<strong>$1</strong>')
       .replace(/^[\*\-]\s+(.+)$/gm,'<li>$1</li>')
-      .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs,'<ul>$1</ul>')
+      .replace(/(<li>[\s\S]+?<\/li>)/g,'<ul>$1</ul>')
       .replace(/^\d+\.\s+(.+)$/gm,'<li>$1</li>')
       .replace(/\n\n+/g,'</p><p>')
       .replace(/\n/g,'<br>');
@@ -290,7 +262,8 @@
   function openChat() {
     isOpen = true;
     win.classList.remove('avx-hidden');
-    btn.classList.add('open');
+    btn.classList.add('avx-open');
+    btn.textContent = '✕';
     if (messages.length === 0) welcome();
     setTimeout(function(){ inp.focus(); }, 220);
   }
@@ -298,20 +271,19 @@
   function closeChat() {
     isOpen = false;
     win.classList.add('avx-hidden');
-    btn.classList.remove('open');
+    btn.classList.remove('avx-open');
+    btn.textContent = '';
   }
 
   function toggleMax() {
     isMax = !isMax;
     win.classList.toggle('avx-max', isMax);
-    maxBtn.innerHTML = isMax ? '&#x2922;' : '&#x26F6;';
+    maxBtn.textContent = isMax ? '⤢' : '⛶';
     maxBtn.setAttribute('aria-label', isMax ? 'Restore' : 'Maximize');
   }
 
   function welcome() {
-    addMsg('assistant',
-      "Hi! I'm your AppViewX Academy Learning Assistant 👋\n\nHow can I help?"
-    );
+    addMsg('assistant', "Hi! I’m your AppViewX Academy Learning Assistant 👋\n\nHow can I help?");
   }
 
   /* ── Send ────────────────────────────────────────────────────── */
