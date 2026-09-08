@@ -962,7 +962,7 @@ const App = (() => {
       else if (score === 1) { fb.textContent = '~ Partially correct'; fb.className = 'feedback-msg'; }
       else { fb.textContent = '✗ Incorrect'; fb.className = 'feedback-msg err'; }
 
-      state.scores[q.area] += score;
+      state.scores[QUESTIONS[state.qi].area] += score;
       state.answers.push({ qi: state.qi, score });
       document.getElementById('btn-next').classList.add('visible');
       locked = false;
