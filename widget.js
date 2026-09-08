@@ -66,7 +66,7 @@
     '#avx-cls:hover{background:rgba(255,255,255,.3)!important;}',
 
     '#avx-msgs{',
-      'flex:1!important;overflow-y:auto!important;padding:14px!important;',
+      'flex:1!important;min-height:0!important;overflow-y:auto!important;padding:14px!important;',
       'display:flex!important;flex-direction:column!important;gap:10px!important;',
       'background:#F8F9FB!important;',
     '}',
