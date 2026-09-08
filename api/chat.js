@@ -18,14 +18,10 @@ const SYSTEM_PROMPT = `You are the AppViewX Academy Learning Assistant — an ex
 5. Never make up product features or capabilities you are not certain about.
 6. Format responses clearly — use bullet points or numbered lists when listing steps or features.`;
 
-export default async function handler(req, res) {
-  // CORS — allow the Academy and local dev
-  const allowed = ['https://academy.appviewx.com', 'http://localhost:3000', 'http://localhost:5500'];
-  const origin  = req.headers.origin || '';
-  res.setHeader('Access-Control-Allow-Origin',  allowed.includes(origin) ? origin : 'https://academy.appviewx.com');
+module.exports = async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin',  '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Vary', 'Origin');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
