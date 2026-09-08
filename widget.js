@@ -160,7 +160,7 @@
       '<div id="avx-typ"><div class="avx-dot"></div><div class="avx-dot"></div><div class="avx-dot"></div></div>' +
     '</div>' +
     '<div id="avx-foot-row">' +
-      '<textarea id="avx-inp" rows="1" placeholder="Ask about AppViewX products or courses…"></textarea>' +
+      '<textarea id="avx-inp" rows="1" placeholder="Talk to AppViewX Academy Assistant…"></textarea>' +
       '<button id="avx-snd" aria-label="Send">&#x27A4;</button>' +
     '</div>' +
     '<div id="avx-credit">AppViewX Academy &middot; academy.appviewx.com</div>';

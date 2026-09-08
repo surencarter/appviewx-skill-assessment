@@ -58,15 +58,26 @@ module.exports = async function handler(req, res) {
       }),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      const text = await response.text();
-      console.error('Anthropic API error:', response.status, text);
-      return res.status(502).json({ error: 'AI service unavailable. Please try again.' });
+      // Anthropic returns structured errors: { type:'error', error:{ type, message } }
+      const msg = data?.error?.message || `HTTP ${response.status}`;
+      console.error('Anthropic API error:', response.status, msg);
+      return res.status(502).json({ error: 'The assistant is temporarily unavailable. Please try again shortly.' });
     }
 
-    const data  = await response.json();
-    const reply = data?.content?.[0]?.text ?? 'Sorry, I could not generate a response.';
-    return res.status(200).json({ reply });
+    // Some Claude models prepend a "thinking" block — find the first text block explicitly
+    const textBlock = Array.isArray(data?.content)
+      ? data.content.find(b => b.type === 'text')
+      : null;
+
+    if (!textBlock?.text) {
+      console.error('No text block in Anthropic response:', JSON.stringify(data).slice(0, 400));
+      return res.status(200).json({ error: 'The assistant did not return a response. Please try again.' });
+    }
+
+    return res.status(200).json({ reply: textBlock.text });
 
   } catch (err) {
     console.error('Handler error:', err);
