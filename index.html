@@ -909,6 +909,15 @@ const App = (() => {
     renderQuestion();
   }
 
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
   function renderQuestion() {
     const q = QUESTIONS[state.qi];
     const pct = Math.round((state.qi / QUESTIONS.length) * 100);
@@ -920,27 +929,28 @@ const App = (() => {
     document.getElementById('q-fb').className = 'feedback-msg';
     document.getElementById('btn-next').classList.remove('visible');
 
+    const shuffledOpts = shuffle(q.opts);
     const opts = document.getElementById('q-opts');
     opts.innerHTML = '';
-    q.opts.forEach((o, i) => {
+    shuffledOpts.forEach((o, i) => {
       const keys = ['A','B','C','D'];
       const btn = document.createElement('button');
       btn.className = 'opt-btn';
       btn.innerHTML = `<span class="opt-key">${keys[i]}</span>${o.text}`;
-      btn.onclick = () => selectOpt(i, btn, q, o.score);
+      btn.onclick = () => selectOpt(i, btn, shuffledOpts, o.score);
       opts.appendChild(btn);
     });
   }
 
   let locked = false;
-  function selectOpt(i, el, q, score) {
+  function selectOpt(i, el, opts, score) {
     if (locked) return;
     locked = true;
     const allBtns = document.querySelectorAll('.opt-btn');
     allBtns.forEach(b => b.classList.add('locked'));
     el.classList.add('selected');
 
-    const correct = q.opts.reduce((best, o, idx) => o.score > q.opts[best].score ? idx : best, 0);
+    const correct = opts.reduce((best, o, idx) => o.score > opts[best].score ? idx : best, 0);
 
     setTimeout(() => {
       allBtns[correct].classList.remove('selected');
