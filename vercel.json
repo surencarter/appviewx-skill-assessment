@@ -5,7 +5,8 @@
   "functions": {
     "api/chat.js":        { "maxDuration": 30 },
     "api/notify.js":      { "maxDuration": 10 },
-    "api/notify-list.js": { "maxDuration": 10 }
+    "api/notify-list.js": { "maxDuration": 10 },
+    "api/analytics.js":   { "maxDuration": 15 }
   }
 }
 

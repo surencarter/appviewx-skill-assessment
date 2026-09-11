@@ -8,6 +8,7 @@
   var isOpen   = false;
   var isTyping = false;
   var isMax    = false;
+  var convId   = 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
   /* ── CSS ─────────────────────────────────────────────────────── */
   var style = document.createElement('style');
@@ -299,7 +300,7 @@
       var r = await fetch(API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: messages }),
+        body: JSON.stringify({ messages: messages, convId: convId }),
       });
       var d = await r.json();
       var reply = d.reply || d.error || 'Sorry, something went wrong. Please try again.';

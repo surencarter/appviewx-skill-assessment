@@ -48,7 +48,7 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
 
-  const { messages } = req.body || {};
+  const { messages, convId } = req.body || {};
   if (!Array.isArray(messages) || messages.length === 0) {
     return res.status(400).json({ error: 'messages array is required' });
   }
@@ -99,10 +99,52 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ error: 'The assistant did not return a response. Please try again.' });
     }
 
+    // Log analytics — fire and forget, never block the response
+    const lastUser = history[history.length - 1];
+    if (lastUser && lastUser.role === 'user') {
+      logAnalytics(lastUser.content, convId).catch(function(){});
+    }
+
     return res.status(200).json({ reply: textBlock.text });
 
   } catch (err) {
     console.error('Handler error:', err);
     return res.status(500).json({ error: 'Internal server error. Please try again.' });
+  }
+}
+
+async function logAnalytics(text, convId) {
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return;
+  const { KV_REST_API_URL: url, KV_REST_API_TOKEN: token } = process.env;
+  const today   = new Date().toISOString().slice(0, 10);
+  const msgKey  = 'analytics:msgs:'  + today;
+  const convKey = 'analytics:convs:' + today;
+  const entry   = JSON.stringify({ ts: new Date().toISOString(), text: String(text).slice(0, 500), convId: convId || 'unknown' });
+  const TTL     = '7776000'; // 90 days
+
+  // Pipeline: LPUSH + SADD + EXPIRE both keys in one HTTP call
+  const pipeline = [
+    ['LPUSH',  msgKey,  entry],
+    ['SADD',   convKey, convId || 'unknown'],
+    ['EXPIRE', msgKey,  TTL],
+    ['EXPIRE', convKey, TTL],
+  ];
+
+  const res = await fetch(url + '/pipeline', {
+    method:  'POST',
+    headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
+    body:    JSON.stringify(pipeline),
+  });
+  if (!res.ok) return;
+
+  const results = await res.json();
+  const newLen  = Array.isArray(results) ? (results[0]?.result || 0) : 0;
+
+  // Cap list at 500 entries per day
+  if (newLen > 500) {
+    await fetch(url + '/ltrim/' + encodeURIComponent(msgKey) + '/0/499', {
+      method:  'POST',
+      headers: { Authorization: 'Bearer ' + token },
+    });
   }
 }

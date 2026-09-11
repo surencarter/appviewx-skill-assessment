@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Academy Chat Analytics</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #F5F5F7; color: #111827; min-height: 100vh;
+    padding: 32px 20px;
+  }
+  .page { max-width: 960px; margin: 0 auto; }
+
+  header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  header img { height: 36px; }
+  header h1 { font-size: 20px; font-weight: 700; color: #111; }
+  header .pill {
+    margin-left: auto; font-size: 12px; font-weight: 600;
+    background: #EDE9FE; color: #5B21B6; border-radius: 20px; padding: 3px 10px;
+  }
+
+  .card {
+    background: #fff; border-radius: 14px; padding: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 20px;
+  }
+
+  /* Auth */
+  .auth-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .auth-row input {
+    flex: 1; min-width: 200px; border: 1.5px solid #E5E7EB;
+    border-radius: 8px; padding: 8px 12px; font-size: 13.5px; outline: none;
+  }
+  .auth-row input:focus { border-color: #5B21B6; }
+  .btn {
+    background: linear-gradient(135deg,#5B21B6,#4F46E5);
+    color: #fff; border: none; border-radius: 8px;
+    padding: 8px 18px; font-size: 13.5px; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+  }
+  .btn:hover { opacity: .88; }
+  #error-msg {
+    color: #991B1B; background: #FEF2F2; padding: 10px 14px;
+    border-radius: 8px; font-size: 13px; margin-top: 12px; display: none;
+  }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media(max-width:640px){ .stats { grid-template-columns: repeat(2,1fr); } }
+  .stat {
+    background: #F9FAFB; border-radius: 12px; padding: 16px 18px;
+  }
+  .stat-val { font-size: 32px; font-weight: 700; color: #5B21B6; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .stat-label { font-size: 11px; color: #6B7280; margin-top: 4px; text-transform: uppercase; letter-spacing: .05em; }
+  .stat-sub { font-size: 11px; color: #9CA3AF; margin-top: 2px; }
+
+  /* Chart */
+  .section-title {
+    font-size: 13px; font-weight: 700; color: #374151; letter-spacing: .03em;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .chart-wrap { position: relative; height: 240px; }
+
+  /* Keywords */
+  .kw-grid { display: flex; flex-direction: column; gap: 8px; }
+  .kw-row { display: flex; align-items: center; gap: 10px; }
+  .kw-rank { font-size: 11px; color: #9CA3AF; width: 18px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .kw-word { font-size: 13.5px; font-weight: 600; color: #111; width: 130px; flex-shrink: 0; }
+  .kw-bar-wrap { flex: 1; background: #F3F4F6; border-radius: 4px; height: 8px; overflow: hidden; }
+  .kw-bar { height: 100%; background: linear-gradient(90deg,#5B21B6,#4F46E5); border-radius: 4px; transition: width .4s; }
+  .kw-count { font-size: 12px; color: #6B7280; width: 24px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .kw-empty { font-size: 13px; color: #9CA3AF; padding: 12px 0; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:640px){ .two-col { grid-template-columns: 1fr; } }
+
+  .updated { font-size: 11px; color: #9CA3AF; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <img src="https://cc.sj-cdn.net/instructor/1n4vvi18nnyfs-appviewx/themes/119fgrg1k6qdg/favicon.1774413970.png" alt="AppViewX" />
+    <h1>Academy Chat Analytics</h1>
+    <span class="pill">Admin</span>
+  </header>
+
+  <!-- Auth -->
+  <div class="card" id="auth-card">
+    <p style="font-size:13.5px;color:#374151;margin-bottom:14px;">Enter your admin key to view chat analytics.</p>
+    <div class="auth-row">
+      <input type="password" id="key-input" placeholder="Admin key" />
+      <button class="btn" onclick="loadData()">Load</button>
+    </div>
+    <div id="error-msg"></div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" style="display:none;">
+
+    <!-- Stats -->
+    <div class="card">
+      <div class="stats" id="stats-row"></div>
+    </div>
+
+    <!-- Chart -->
+    <div class="card">
+      <div class="section-title">Conversations &amp; Messages — Last 14 Days</div>
+      <div class="chart-wrap">
+        <canvas id="chart"></canvas>
+      </div>
+    </div>
+
+    <!-- Keywords + Breakdown -->
+    <div class="two-col">
+      <div class="card">
+        <div class="section-title">Top Keywords (Last 2 Days)</div>
+        <div class="kw-grid" id="kw-grid"></div>
+      </div>
+      <div class="card">
+        <div class="section-title">This Week</div>
+        <div id="week-breakdown"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+var API_BASE = 'https://appviewx-skill-assessment.vercel.app/api/analytics';
+var adminKey = '';
+var chartInst = null;
+
+function loadData() {
+  var k = document.getElementById('key-input').value.trim();
+  if (!k) { showError('Please enter the admin key.'); return; }
+  adminKey = k;
+  hideError();
+
+  fetch(API_BASE, { headers: { 'Authorization': 'Bearer ' + k } })
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (d.error) { showError(d.error === 'Unauthorized' ? 'Invalid admin key.' : d.error); return; }
+      document.getElementById('auth-card').style.display   = 'none';
+      document.getElementById('dashboard').style.display   = 'block';
+      renderStats(d);
+      renderChart(d.daily);
+      renderKeywords(d.keywords);
+      renderWeek(d);
+    })
+    .catch(function() { showError('Network error. Please try again.'); });
+}
+
+function renderStats(d) {
+  document.getElementById('stats-row').innerHTML =
+    stat(d.todayConversations, 'Today', 'Conversations') +
+    stat(d.todayMessages,      'Today', 'Messages') +
+    stat(d.weekConversations,  '7-day', 'Conversations') +
+    stat(d.weekMessages,       '7-day', 'Messages');
+}
+
+function stat(val, sub, label) {
+  return '<div class="stat">' +
+    '<div class="stat-val">' + (val || 0) + '</div>' +
+    '<div class="stat-label">' + label + '</div>' +
+    '<div class="stat-sub">' + sub + '</div>' +
+  '</div>';
+}
+
+function renderChart(daily) {
+  if (!daily || !daily.length) return;
+  var labels = daily.map(function(d) {
+    var dt = new Date(d.date + 'T00:00:00');
+    return dt.toLocaleDateString('en-GB', { day:'2-digit', month:'short' });
+  });
+  var convData = daily.map(function(d) { return d.conversations; });
+  var msgData  = daily.map(function(d) { return d.messages; });
+
+  if (chartInst) chartInst.destroy();
+  var ctx = document.getElementById('chart').getContext('2d');
+  chartInst = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Conversations',
+          data: convData,
+          backgroundColor: '#5B21B6',
+          borderRadius: 4,
+          borderSkipped: false,
+        },
+        {
+          label: 'Messages',
+          data: msgData,
+          backgroundColor: '#C4B5FD',
+          borderRadius: 4,
+          borderSkipped: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { font: { size: 12 }, boxWidth: 12, padding: 16 },
+        },
+        tooltip: { mode: 'index', intersect: false },
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 11 }, color: '#6B7280' },
+        },
+        y: {
+          beginAtZero: true,
+          grid: { color: '#F3F4F6' },
+          ticks: { font: { size: 11 }, color: '#6B7280', stepSize: 1 },
+        },
+      },
+    },
+  });
+}
+
+function renderKeywords(kws) {
+  var grid = document.getElementById('kw-grid');
+  if (!kws || !kws.length) {
+    grid.innerHTML = '<p class="kw-empty">No data yet — keywords appear after users start chatting.</p>';
+    return;
+  }
+  var max = kws[0].count || 1;
+  grid.innerHTML = kws.map(function(k, i) {
+    var pct = Math.round((k.count / max) * 100);
+    return '<div class="kw-row">' +
+      '<span class="kw-rank">' + (i + 1) + '</span>' +
+      '<span class="kw-word">' + esc(k.word) + '</span>' +
+      '<div class="kw-bar-wrap"><div class="kw-bar" style="width:' + pct + '%"></div></div>' +
+      '<span class="kw-count">' + k.count + '</span>' +
+    '</div>';
+  }).join('');
+}
+
+function renderWeek(d) {
+  var rows = [
+    ['Conversations', d.weekConversations],
+    ['Messages', d.weekMessages],
+    ['Avg msgs / conv', d.weekConversations ? (d.weekMessages / d.weekConversations).toFixed(1) : '—'],
+    ['Total (14-day) convs', d.totalConversations],
+    ['Total (14-day) msgs', d.totalMessages],
+  ];
+  document.getElementById('week-breakdown').innerHTML =
+    '<table style="width:100%;border-collapse:collapse;font-size:13.5px;">' +
+    rows.map(function(r) {
+      return '<tr style="border-bottom:1px solid #F3F4F6;">' +
+        '<td style="padding:9px 0;color:#6B7280;">' + r[0] + '</td>' +
+        '<td style="padding:9px 0;font-weight:700;text-align:right;color:#111;">' + r[1] + '</td>' +
+      '</tr>';
+    }).join('') +
+    '</table>' +
+    '<p class="updated">Updated just now &middot; Last 14 days only</p>';
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function showError(msg) {
+  var el = document.getElementById('error-msg');
+  el.textContent = msg; el.style.display = 'block';
+}
+function hideError() { document.getElementById('error-msg').style.display = 'none'; }
+
+document.getElementById('key-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') loadData();
+});
+</script>
+</body>
+</html>
