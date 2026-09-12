@@ -148,11 +148,12 @@
     /* Copy button */
     '.avx-msg-actions{display:flex!important;gap:4px!important;padding:0 2px!important;}',
     '.avx-copy-btn{',
-      'all:unset;cursor:pointer!important;',
+      'all:unset;cursor:pointer!important;position:relative!important;',
       'font-size:11px!important;color:#9CA3AF!important;',
       'display:flex!important;align-items:center!important;gap:3px!important;',
       'padding:2px 6px!important;border-radius:5px!important;',
       'transition:color .15s,background .15s!important;',
+      'overflow:hidden!important;',
     '}',
     '.avx-copy-btn:hover{color:#5B21B6!important;background:#EDE9FE!important;}',
     '.avx-copy-btn.copied{color:#059669!important;background:#D1FAE5!important;}',
@@ -186,7 +187,7 @@
       'padding:4px 0 10px!important;align-self:flex-start!important;width:100%!important;flex-shrink:0!important;',
     '}',
     '.avx-starter{',
-      'all:unset;cursor:pointer!important;',
+      'all:unset;cursor:pointer!important;position:relative!important;overflow:hidden!important;',
       'font-size:12px!important;color:#5B21B6!important;',
       'background:#EDE9FE!important;border-radius:20px!important;',
       'padding:5px 12px!important;line-height:1.4!important;',
@@ -222,8 +223,8 @@
     '#avx-snd[disabled]{opacity:.35!important;cursor:not-allowed!important;}',
     '#avx-credit{text-align:center!important;font-size:10px!important;color:#9CA3AF!important;padding:4px 10px 8px!important;background:#fff!important;flex-shrink:0!important;}',
 
-    /* Skilljar override */
-    '#avx-btn::before,#avx-btn::after,#avx-clr::before,#avx-clr::after,#avx-cls::before,#avx-cls::after,#avx-max::before,#avx-max::after,#avx-snd::before,#avx-snd::after{content:none!important;display:none!important;position:static!important;width:0!important;height:0!important;}',
+    /* Skilljar override — neutralise ALL button pseudo-elements inside the widget */
+    '#avx-win button::before,#avx-win button::after,#avx-btn::before,#avx-btn::after{content:none!important;display:none!important;position:static!important;width:0!important;height:0!important;}',
   ].join('');
   document.head.appendChild(style);
 
@@ -340,7 +341,8 @@
       copyBtn.innerHTML = '&#x2398; Copy';
       copyBtn.setAttribute('aria-label', 'Copy response');
       copyBtn.setAttribute('data-raw', text);
-      copyBtn.addEventListener('click', function() {
+      copyBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
         var raw = copyBtn.getAttribute('data-raw');
         navigator.clipboard.writeText(raw).then(function() {
           copyBtn.innerHTML = '&#x2713; Copied';
