@@ -3,7 +3,7 @@
   window.__avxWidget = true;
 
   var API  = 'https://appviewx-skill-assessment.vercel.app/api/chat';
-  var ICON = 'https://cc.sj-cdn.net/instructor/1n4vvi18nnyfs-appviewx/themes/119fgrg1k6qdg/favicon.1774413970.png';
+  var ICON = 'https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2Fa9lh53olunxmywo86nor5h626%2Fpublic%2F1789181125%2Flogo-only.1789181124942.png';
   var messages = [];
   var isOpen   = false;
   var isTyping = false;
