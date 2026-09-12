@@ -1,4 +1,10 @@
-const KB = require('../data/knowledge-base.json');
+const path = require('path');
+let KB = null;
+try {
+  KB = require(path.resolve(__dirname, '../data/knowledge-base.json'));
+} catch (e) {
+  console.error('KB load failed:', e.message);
+}
 
 const SYSTEM_PROMPT = `You are the AppViewX Academy Learning Assistant — a friendly, knowledgeable guide for learners on academy.appviewx.com.
 

@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "functions": {
-    "api/chat.js":        { "maxDuration": 30 },
+    "api/chat.js":        { "maxDuration": 30, "includeFiles": "data/**" },
     "api/notify.js":      { "maxDuration": 10 },
     "api/notify-list.js": { "maxDuration": 10 },
     "api/analytics.js":   { "maxDuration": 15 }
