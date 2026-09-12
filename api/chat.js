@@ -56,6 +56,31 @@ function buildContext(query) {
 
   var results = [];
 
+  // Search learning paths first (highest priority — matches portal groupings)
+  (KB.paths || []).forEach(function(p) {
+    var searchable = (p.keywords || []).concat(
+      String(p.name || '').toLowerCase().split(/\s+/),
+      String(p.description || '').toLowerCase().split(/\s+/)
+    );
+    var s = score(searchable);
+    if (s > 0) {
+      var courseList = Array.isArray(p.courses)
+        ? p.courses.map(function(c) { return '  - ' + c.title + ' (' + c.duration + ')'; }).join('\n')
+        : '';
+      results.push({
+        score: s + 10, // boost paths so they appear above individual courses
+        text: '**Learning Path: ' + p.name + '**' +
+              '\nURL: ' + p.url +
+              '\nCourses: ' + p.course_count +
+              '\nTotal Duration: ' + p.total_duration +
+              '\nAudience: ' + p.audience +
+              '\nDescription: ' + p.description +
+              (courseList ? '\nCourse list:\n' + courseList : ''),
+      });
+    }
+  });
+
+  // Search individual courses
   (KB.courses || []).forEach(function(c) {
     var searchable = (c.keywords || []).concat(
       String(c.title || '').toLowerCase().split(/\s+/),
@@ -77,6 +102,7 @@ function buildContext(query) {
     }
   });
 
+  // Search FAQs
   (KB.faqs || []).forEach(function(f) {
     var searchable = (f.keywords || []).concat(
       String(f.question || '').toLowerCase().split(/\s+/)

@@ -1,4 +1,59 @@
 {
+  "paths": [
+    {
+      "id": "foundational",
+      "name": "Foundational Courses",
+      "url": "https://academy.appviewx.com/page/foundational-courses",
+      "description": "5 short introductory courses for anyone new to AppViewX. Covers the core products at a high level — CLM, PKIaaS, Kubernetes certificate management, Code Signing, and SSH Key Management. Total duration: approximately 92 minutes (1.5 hours).",
+      "course_count": 5,
+      "total_duration": "~92 minutes (about 1.5 hours)",
+      "audience": "New users, anyone evaluating AppViewX, IT engineers unfamiliar with CLM concepts",
+      "keywords": ["foundational", "foundation", "foundational courses", "beginner", "new", "start", "introduction", "overview", "basics", "getting started", "entry level", "first", "5 topics", "five topics"],
+      "courses": [
+        { "title": "AVX Certificate Lifecycle Management (CLM)", "duration": "17 minutes" },
+        { "title": "AVX PKIaaS (PKI as a Service)", "duration": "26 minutes" },
+        { "title": "AVX CLM for Kubernetes", "duration": "8 minutes" },
+        { "title": "AVX Code Signing", "duration": "12 minutes" },
+        { "title": "AVX SSH Key Management", "duration": "29 minutes" }
+      ]
+    },
+    {
+      "id": "professional",
+      "name": "Professional Courses",
+      "url": "https://academy.appviewx.com/page/professional-courses",
+      "description": "4 in-depth courses for security engineers and administrators who implement and manage AppViewX CLM in production. Covers platform foundations, public TLS visibility, private PKI monitoring, and certificate discovery via network scans. Total duration: approximately 347 minutes (about 5.8 hours).",
+      "course_count": 4,
+      "total_duration": "~347 minutes (about 5.8 hours)",
+      "audience": "Security engineers, PKI administrators, IT architects implementing AppViewX in enterprise environments",
+      "keywords": ["professional", "professional courses", "advanced", "clm", "certificate lifecycle", "expert", "in-depth", "deep dive", "4 topics", "four topics", "enterprise", "implementation", "administrator", "admin"],
+      "courses": [
+        { "title": "AppViewX CLM Foundations: Introduction to the Platform and Core Components", "duration": "62 minutes" },
+        { "title": "Building Visibility and Monitoring for Public TLS Certificates", "duration": "122 minutes" },
+        { "title": "Building Visibility and Monitoring for Private PKI Certificates", "duration": "100 minutes" },
+        { "title": "Discovering Certificates with Network Scans and Platform Integrations", "duration": "63 minutes" }
+      ]
+    },
+    {
+      "id": "automation",
+      "name": "AVX Automation",
+      "url": "https://academy.appviewx.com/page/avx-automation",
+      "description": "8 self-paced modules covering AppViewX workflow automation — from building visual workflows and forms to scripting, variables, REST APIs, hooks, and integrations. All modules are self-paced with no fixed time limit.",
+      "course_count": 8,
+      "total_duration": "Self-paced (no fixed duration)",
+      "audience": "DevOps engineers, automation architects, developers integrating AppViewX into CI/CD pipelines",
+      "keywords": ["automation", "avx automation", "workflow", "workflows", "visual workflow", "scripting", "rest api", "hooks", "devops", "cicd", "ci/cd", "pipeline", "integration", "8 topics", "eight topics", "self-paced", "self paced"],
+      "courses": [
+        { "title": "Visual Workflows: Introduction and Form Development", "duration": "Self-paced" },
+        { "title": "Visual Workflows: Working with Functional Palettes", "duration": "Self-paced" },
+        { "title": "Visual Workflows: Working with Notification Palettes", "duration": "Self-paced" },
+        { "title": "Visual Workflows: Working with User Experience Palettes", "duration": "Self-paced" },
+        { "title": "Visual Workflows: Scripting", "duration": "Self-paced" },
+        { "title": "Visual Workflows: Variables", "duration": "Self-paced" },
+        { "title": "Hooks, Query Explorer, Scripts and REST API", "duration": "Self-paced" },
+        { "title": "Visual Workflows: Building and Using Workflow Examples", "duration": "Self-paced" }
+      ]
+    }
+  ],
   "courses": [
     {
       "id": "foundational-clm",
