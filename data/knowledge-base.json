@@ -1,0 +1,422 @@
+{
+  "courses": [
+    {
+      "id": "foundational-clm",
+      "title": "AVX Certificate Lifecycle Management (CLM)",
+      "path": "Foundational",
+      "url": "https://academy.appviewx.com/page/foundational-courses",
+      "duration": "17 minutes",
+      "level": "Foundation",
+      "description": "An introduction to AVX Certificate Lifecycle Management (CLM) — the process of managing digital certificates throughout their lifespan. Covers why CLM is critical for preventing certificate-related outages, ensuring compliance, and maintaining a secure digital infrastructure. Includes two lessons: What is CLM and Why AVX CLM.",
+      "objectives": [
+        "Understand the concept of Certificate Lifecycle Management",
+        "Identify the terminology used in CLM",
+        "Understand the challenges organisations face in CLM"
+      ],
+      "audience": ["AppViewX customers", "Partners", "Resellers", "Sales and marketing personnel"],
+      "prerequisites": ["Basic knowledge of security domain", "Familiarity with cyber security concepts"],
+      "curriculum": ["What is Certificate Lifecycle Management (CLM)", "Why AVX CLM?", "CLM Quiz"],
+      "keywords": ["clm", "certificate", "lifecycle", "ssl", "tls", "digital", "management", "expiry", "renewal", "revocation", "discovery", "issuance", "overview", "introduction", "foundational", "beginner"]
+    },
+    {
+      "id": "foundational-pkiaas",
+      "title": "AVX PKIaaS (PKI as a Service)",
+      "path": "Foundational",
+      "url": "https://academy.appviewx.com/page/foundational-courses",
+      "duration": "26 minutes",
+      "level": "Foundation",
+      "description": "An overview of Public Key Infrastructure (PKI) and AVX PKIaaS. Covers how PKI builds digital trust using certificates to verify identities, prevent fraud and identity theft, and protect sensitive data in transit. Explains how AVX PKIaaS delivers cloud-based Private CA capabilities with support for SCEP, EST, and ACME protocols, and integrations with AD CS and HashiCorp Vault.",
+      "objectives": [
+        "Understand the concept of PKI",
+        "Identify the types of encryption",
+        "Understand Digital Handshake and Digital Signature",
+        "Understand Certificate Authority (CA) and CA components",
+        "Understand how AVX PKIaaS works"
+      ],
+      "audience": ["AppViewX customers", "Partners", "Sales and marketing personnel"],
+      "prerequisites": ["Basic knowledge of security domain", "Cyber security fundamentals"],
+      "curriculum": ["What is PKI?", "Quiz on PKI", "Why AVX PKIaaS", "Quiz on PKIaaS"],
+      "keywords": ["pki", "pkiaas", "public key", "infrastructure", "private ca", "certificate authority", "scep", "est", "acme", "ad cs", "hashicorp", "vault", "encryption", "digital signature", "handshake", "trust", "internal certificates"]
+    },
+    {
+      "id": "foundational-kubernetes",
+      "title": "AVX CLM for Kubernetes",
+      "path": "Foundational",
+      "url": "https://academy.appviewx.com/page/foundational-courses",
+      "duration": "8 minutes",
+      "level": "Foundation",
+      "description": "An introduction to Certificate Lifecycle Management for Kubernetes environments. Covers CLM concepts specific to containerised workloads, Kubernetes terminology, and how applications use certificates in Kubernetes. Explains cert-manager integration, TLS for ingress controllers, and pod-to-pod communication security.",
+      "objectives": [
+        "Understand CLM for Kubernetes",
+        "Identify Kubernetes certificate terminology",
+        "Understand how applications use certificates in Kubernetes"
+      ],
+      "audience": ["AppViewX customers", "Partners", "DevOps engineers", "Sales and marketing"],
+      "prerequisites": ["Docker and container technology knowledge", "Security domain basics", "Understanding of certificates and CAs"],
+      "curriculum": ["AVX CLM for Kubernetes"],
+      "keywords": ["kubernetes", "k8s", "container", "docker", "cert-manager", "ingress", "tls", "pod", "service mesh", "microservice", "devops", "cloud native"]
+    },
+    {
+      "id": "foundational-codesigning",
+      "title": "AVX Code Signing",
+      "path": "Foundational",
+      "url": "https://academy.appviewx.com/page/foundational-courses",
+      "duration": "12 minutes",
+      "level": "Foundation",
+      "description": "An introduction to code signing and the AVX Code Signing module. Code signing ensures the trust, authenticity, and integrity of software applications, firmware, and digital assets. Covers signing policy management, CI/CD pipeline integration, audit trails, and how AVX Code Signing secures the software supply chain.",
+      "objectives": [
+        "Understand the concept of Code Signing",
+        "Identify code signing terminology",
+        "Understand code signing concepts and how they apply to the software supply chain"
+      ],
+      "audience": ["AppViewX customers", "Partners", "Sales and marketing personnel", "DevOps and software teams"],
+      "prerequisites": ["Security domain knowledge", "Cyber security basics"],
+      "curriculum": ["Overview of Code Signing", "Code Signing Explained", "Code Sign Quiz"],
+      "keywords": ["code signing", "codesign", "software", "firmware", "pipeline", "cicd", "ci/cd", "supply chain", "authenticity", "integrity", "signing policy", "audit", "digital asset"]
+    },
+    {
+      "id": "foundational-ssh",
+      "title": "AVX SSH Key Management",
+      "path": "Foundational",
+      "url": "https://academy.appviewx.com/page/foundational-courses",
+      "duration": "29 minutes",
+      "level": "Foundation",
+      "description": "An introduction to SSH and the AVX SSH module. SSH (Secure Shell) is a network protocol for secure remote access and communication between computers. AVX SSH fully automates SSH key and certificate lifecycle management — including key requests, rollout, rotation, certificate provisioning, renewal, and revocation. Also covers dedicated SSH CAs and RBAC-based granular access control.",
+      "objectives": [
+        "Understand the concept of SSH",
+        "Identify types of SSH credentials (keys vs certificates)",
+        "Understand SSH Machine Identity and SSH Machine Identity Lifecycles",
+        "Understand AVX SSH capabilities"
+      ],
+      "audience": ["AppViewX customers", "Partners", "Security admins", "Sales and marketing"],
+      "prerequisites": ["Security domain basics", "Cyber security fundamentals"],
+      "curriculum": ["What is SSH?", "AVX SSH", "Quiz on SSH"],
+      "keywords": ["ssh", "secure shell", "key management", "machine identity", "rotation", "orphaned", "rbac", "access control", "remote access", "automation", "certificate", "provisioning"]
+    },
+    {
+      "id": "professional-clm-foundations",
+      "title": "AppViewX CLM Foundations: Introduction to the Platform and Core Components",
+      "path": "Professional CLM",
+      "url": "https://academy.appviewx.com/page/professional-courses",
+      "duration": "62 minutes",
+      "level": "Professional",
+      "description": "The entry point into the Professional CLM track. Covers the AppViewX platform mission, core features (modular automation, RBAC, vendor-agnostic design), CLM deep-dive, platform architecture and components, Cloud Connector requirements and installation, and product navigation. Essential before proceeding to the advanced professional modules.",
+      "objectives": [
+        "Understand why AppViewX is a leader in machine identity and CLM",
+        "Explore key features and capabilities of AppViewX CLM",
+        "Understand AppViewX platform architecture and core components",
+        "Learn Cloud Connector requirements and installation",
+        "Navigate the AppViewX CLM platform confidently"
+      ],
+      "audience": ["New AppViewX users", "IT Managers evaluating the platform", "Security teams moving from manual to automated CLM"],
+      "prerequisites": ["Recommended: completion of foundational CLM course"],
+      "curriculum": ["Why AppViewX", "Overview of AppViewX Digital Identity Solutions", "Introduction to AVX CLM", "AppViewX Architecture and Components", "Cloud Connector (requirements and installation)", "Product Navigation"],
+      "keywords": ["platform", "architecture", "components", "cloud connector", "navigation", "rbac", "workflow", "automation", "vendor agnostic", "netops", "secops", "professional", "introduction", "foundations", "installation"]
+    },
+    {
+      "id": "professional-public-tls",
+      "title": "Building Visibility and Monitoring for Public TLS Certificates",
+      "path": "Professional CLM",
+      "url": "https://academy.appviewx.com/page/professional-courses",
+      "duration": "122 minutes",
+      "level": "Professional",
+      "description": "A comprehensive hands-on course covering certificate discovery, visibility, policy enforcement, and lifecycle management for public TLS certificates. Covers Discovery Scans and Rules, Certificate Transparency Log Scans, Public CA integrations, Certificate Groups, CA Policies, Inventory navigation, Dashboards and Reports, and Expiry Notifications. Equips learners to manage public certificates end-to-end in hybrid and multi-cloud environments.",
+      "objectives": [
+        "Configure and run Discovery Scans and Rules",
+        "Work with CT Log Scans and Public CA Integrations",
+        "Manage Certificate Groups, CA Policies, and Public CA Scans",
+        "Navigate Inventory, build Dashboards and Reports",
+        "Configure Expiry Notifications and Alerts"
+      ],
+      "audience": ["PKI and certificate administrators", "Security engineers", "Infrastructure teams"],
+      "prerequisites": ["AppViewX CLM Foundations course recommended"],
+      "curriculum": ["Discovery Scan", "Discovery Rules", "Discovery Results", "CT Log Scan", "Public CA Integration", "Certificate Groups", "CA Policies", "Public CA Scan", "Inventory Navigation", "Dashboards and Reports", "Expiry Notifications and Alerting", "Certificate Management"],
+      "keywords": ["public", "tls", "discovery", "scan", "ct log", "certificate transparency", "public ca", "inventory", "dashboard", "report", "expiry", "notification", "alert", "monitoring", "visibility", "multi-cloud", "hybrid"]
+    },
+    {
+      "id": "professional-private-pki",
+      "title": "Building Visibility and Monitoring for Private PKI Certificates",
+      "path": "Professional CLM",
+      "url": "https://academy.appviewx.com/page/professional-courses",
+      "duration": "100 minutes",
+      "level": "Professional",
+      "description": "Covers managing private certificates at scale using AVX CLM. Topics include CA Inventory navigation, Windows Gateway vs Integrated Gateway architecture, MSCA (Microsoft CA) integrations, Certificate Groups, CA Policies, full CLM Actions (Enroll, Renew, Revoke, Regenerate, Reissue), Discovery Parameters and Rules, key usage strategies, CA Scans, and Dashboards and Reports.",
+      "objectives": [
+        "Navigate and manage CA Inventory",
+        "Understand Windows Gateway vs Integrated Gateway",
+        "Perform MSCA integrations using both gateway models",
+        "Execute CLM Actions: Enroll, Renew, Revoke, Regenerate, Reissue",
+        "Configure Discovery for complete certificate visibility",
+        "Use Dashboards and Reports for compliance and audit"
+      ],
+      "audience": ["PKI and certificate administrators", "Security engineers", "DevOps and platform engineers", "Infrastructure and cloud security teams", "Compliance and risk management professionals"],
+      "prerequisites": ["AppViewX CLM Foundations course recommended"],
+      "curriculum": ["CA Inventory Navigation", "Windows Gateway", "Integrated Gateway", "MSCA Integration with Windows Gateway", "MSCA Integration with Integrated Gateway", "Certificate Groups", "CA Policies", "CLM Actions", "Discovery Parameter and Rules", "Key Usage Strategies", "CA Scan", "Dashboards and Reports", "Upload and Download Certificates", "Expiry Notifications"],
+      "keywords": ["private", "pki", "private ca", "msca", "microsoft ca", "windows gateway", "integrated gateway", "enroll", "renew", "revoke", "regenerate", "reissue", "ca inventory", "compliance", "audit", "devops", "platform engineer"]
+    },
+    {
+      "id": "professional-network-scans",
+      "title": "Discovering Certificates with Network Scans and Platform Integrations",
+      "path": "Professional CLM",
+      "url": "https://academy.appviewx.com/page/professional-courses",
+      "duration": "63 minutes",
+      "level": "Professional",
+      "description": "An expert-level course covering deep-tech aspects of the AppViewX environment. Topics include Network Scan dependencies and settings, handling expired certificates, certificate history and audit trails, AVX AI Expert for natural-language PKI queries, Insights Dashboards, Certificate Attributes for custom metadata, LDAP integration for directory synchronisation, and SSO (SAML/OIDC) implementation.",
+      "objectives": [
+        "Configure and run Network Scans",
+        "Handle expired certificates with advanced workflows",
+        "Use AVX AI Expert for intelligent PKI assistance",
+        "Configure LDAP for directory synchronisation",
+        "Set up SSO (SAML/OIDC) for secure user access"
+      ],
+      "audience": ["PKI architects designing global certificate strategies", "Security leads responsible for enterprise identity", "Compliance managers requiring deep audit capabilities"],
+      "prerequisites": ["Completion of earlier Professional CLM courses recommended"],
+      "curriculum": ["Network Scan and dependencies", "Network scan settings", "Running a Network Scan", "Handling Expired Certificates", "History of Certificates", "Alerts and Logs", "Insights Dashboards", "Certificate Attributes", "AVX AI Expert", "Configuring LDAP", "Configuring SSO"],
+      "keywords": ["network scan", "ldap", "sso", "saml", "oidc", "single sign-on", "ai expert", "expired", "history", "audit", "logs", "alerts", "insights", "attributes", "metadata", "enterprise", "architect", "advanced"]
+    },
+    {
+      "id": "automation-intro-forms",
+      "title": "Visual Workflows: Introduction and Form Development",
+      "path": "AVX Automation",
+      "url": "https://academy.appviewx.com/page/avx-automation",
+      "duration": "Self-paced",
+      "level": "Automation",
+      "description": "The first module in the AVX Automation track. Introduces the foundational elements (palettes) of Visual Workflows and covers Custom Form Creation, including using the RegEx Library for input validation and building dynamic custom forms.",
+      "objectives": ["Understand the foundations of Visual Workflows", "Create custom forms", "Use the RegEx Library"],
+      "audience": ["Infosec professionals", "PKI admins", "NetOps", "SecOps", "DevOps"],
+      "prerequisites": [],
+      "curriculum": ["Introduction", "Custom Form Creation", "Using the RegEx Library", "Custom Form Development Quiz"],
+      "keywords": ["visual workflow", "workflow", "form", "automation", "palette", "regex", "custom form", "introduction", "beginner"]
+    },
+    {
+      "id": "automation-functional-palettes",
+      "title": "Visual Workflows: Working with Functional Palettes",
+      "path": "AVX Automation",
+      "url": "https://academy.appviewx.com/page/avx-automation",
+      "duration": "Self-paced",
+      "level": "Automation",
+      "description": "Covers the core functional building blocks (palettes) of AppViewX Visual Workflows. Includes Split, If & Retry, Join & Delay, Schedule, REST, Switch palettes, using Subflows, and organising palettes with Folders. Essential for building any non-trivial automation workflow.",
+      "objectives": ["Use functional palettes to control workflow logic", "Integrate REST APIs into workflows", "Build reusable subflows"],
+      "audience": ["Infosec professionals", "PKI admins", "NetOps", "SecOps", "DevOps"],
+      "prerequisites": ["Visual Workflows: Introduction and Form Development"],
+      "curriculum": ["Split Palette", "Organising Palettes with Folders", "If & Retry Palette", "Join & Delay Palette", "Schedule Palette", "Using REST in Visual Workflows", "Switch Palette", "Subflows"],
+      "keywords": ["visual workflow", "palette", "split", "if", "retry", "join", "delay", "schedule", "rest", "api", "switch", "subflow", "folder", "logic", "automation", "functional"]
+    },
+    {
+      "id": "automation-notification-palettes",
+      "title": "Visual Workflows: Working with Notification Palettes",
+      "path": "AVX Automation",
+      "url": "https://academy.appviewx.com/page/avx-automation",
+      "duration": "Self-paced",
+      "level": "Automation",
+      "description": "Covers the notification capabilities of Visual Workflows. Includes using the Email Palette and Slack Palette to trigger automated alerts and notifications from within workflows.",
+      "objectives": ["Send automated email notifications from workflows", "Integrate Slack notifications into automation"],
+      "audience": ["Infosec professionals", "PKI admins", "NetOps", "SecOps", "DevOps"],
+      "prerequisites": ["Visual Workflows: Introduction and Form Development"],
+      "curriculum": ["Email Palette", "Slack Palette", "Workflow Automation: Email and Slack"],
+      "keywords": ["notification", "email", "slack", "alert", "palette", "workflow", "automation", "messaging"]
+    },
+    {
+      "id": "automation-ux-palettes",
+      "title": "Visual Workflows: Working with User Experience Palettes",
+      "path": "AVX Automation",
+      "url": "https://academy.appviewx.com/page/avx-automation",
+      "duration": "Self-paced",
+      "level": "Automation",
+      "description": "Covers the user experience (UX) palettes in AppViewX Visual Workflows. Includes the Diff Checker, Grid, Holistic View, and Chart palettes for building interactive and visual workflow interfaces.",
+      "objectives": ["Use UX palettes to enhance workflow interfaces", "Build data grids, charts, and diff views within workflows"],
+      "audience": ["Infosec professionals", "PKI admins", "NetOps", "SecOps", "DevOps"],
+      "prerequisites": ["Visual Workflows: Introduction and Form Development"],
+      "curriculum": ["Diff Checker Palette", "Grid Palette", "Holistic View Palette", "Chart Palette"],
+      "keywords": ["user experience", "ux", "diff", "grid", "chart", "holistic view", "palette", "workflow", "interface", "visual"]
+    },
+    {
+      "id": "automation-scripting",
+      "title": "Visual Workflows: Scripting",
+      "path": "AVX Automation",
+      "url": "https://academy.appviewx.com/page/avx-automation",
+      "duration": "Self-paced",
+      "level": "Automation",
+      "description": "Covers scripting within AppViewX Visual Workflows. Focuses on using Helper Scripts to extend workflow logic beyond the built-in palettes, enabling custom code execution as part of automation flows.",
+      "objectives": ["Write and use helper scripts in workflows", "Extend workflow logic with custom scripting"],
+      "audience": ["Infosec professionals", "PKI admins", "NetOps", "SecOps", "DevOps"],
+      "prerequisites": ["Visual Workflows: Introduction and Form Development"],
+      "curriculum": ["Using Helper Scripts", "Helper Scripts Quiz"],
+      "keywords": ["scripting", "script", "helper script", "code", "custom", "workflow", "automation", "programming"]
+    },
+    {
+      "id": "automation-variables",
+      "title": "Visual Workflows: Variables",
+      "path": "AVX Automation",
+      "url": "https://academy.appviewx.com/page/avx-automation",
+      "duration": "Self-paced",
+      "level": "Automation",
+      "description": "Covers variable management in AppViewX Visual Workflows. Includes Global Variables for cross-workflow data sharing and Magic Variables (two parts) for dynamic data binding within workflow palettes.",
+      "objectives": ["Create and use global variables", "Use magic variables for dynamic data binding"],
+      "audience": ["Infosec professionals", "PKI admins", "NetOps", "SecOps", "DevOps"],
+      "prerequisites": ["Visual Workflows: Introduction and Form Development"],
+      "curriculum": ["Using Global Variables", "Using Magic Variables - Part 1", "Using Magic Variables - Part 2"],
+      "keywords": ["variable", "global variable", "magic variable", "data", "dynamic", "workflow", "binding", "automation"]
+    },
+    {
+      "id": "automation-hooks-rest",
+      "title": "Hooks, Query Explorer, Scripts and REST API",
+      "path": "AVX Automation",
+      "url": "https://academy.appviewx.com/page/avx-automation",
+      "duration": "Self-paced",
+      "level": "Automation",
+      "description": "Covers advanced AppViewX automation capabilities: Hooks (event-driven triggers), Query Explorer (data querying tool), Script Hooks, and REST API integration for extending platform functionality and integrating with external systems.",
+      "objectives": ["Configure and use hooks for event-driven automation", "Use Query Explorer for data queries", "Integrate REST APIs with AppViewX workflows"],
+      "audience": ["Infosec professionals", "PKI admins", "NetOps", "SecOps", "DevOps"],
+      "prerequisites": ["Visual Workflows fundamentals"],
+      "curriculum": ["Hooks and Query Explorer", "Script Hooks", "Hooks in Workflow Automation"],
+      "keywords": ["hooks", "query explorer", "rest api", "api", "script hooks", "event", "trigger", "integration", "automation", "advanced"]
+    },
+    {
+      "id": "automation-examples",
+      "title": "Visual Workflows: Building and Using Workflow Examples",
+      "path": "AVX Automation",
+      "url": "https://academy.appviewx.com/page/avx-automation",
+      "duration": "Self-paced",
+      "level": "Automation",
+      "description": "The final module of the Automation track. Demonstrates how to build and use practical workflow examples, showing end-to-end automation scenarios. Includes two complete workflow examples that tie together the concepts from all previous modules.",
+      "objectives": ["Build complete end-to-end automation workflows", "Apply all workflow concepts in practical scenarios"],
+      "audience": ["Infosec professionals", "PKI admins", "NetOps", "SecOps", "DevOps"],
+      "prerequisites": ["All prior Visual Workflows modules recommended"],
+      "curriculum": ["Workflow Example One", "Workflow Example Two", "Quiz and Wrap Up"],
+      "keywords": ["workflow examples", "end-to-end", "practical", "automation", "build", "examples", "use cases", "demo"]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is Certificate Lifecycle Management (CLM)?",
+      "answer": "Certificate Lifecycle Management (CLM) is the process of managing digital certificates throughout their entire lifespan — from issuance and deployment through renewal to revocation. It covers discovery (finding all certificates across your infrastructure), issuance (requesting and deploying new certificates), renewal (renewing before expiry to prevent outages), and revocation (revoking compromised or unused certificates). AVX CLM automates all of these steps to prevent outages, ensure compliance, and maintain security at scale.",
+      "keywords": ["clm", "certificate lifecycle", "what is", "definition", "lifecycle management", "issuance", "renewal", "revocation", "discovery"]
+    },
+    {
+      "question": "What is the difference between foundational and professional courses?",
+      "answer": "Foundational courses are short product overviews (8–29 minutes each) for people new to AppViewX or wanting a product refresher. They cover CLM, PKIaaS, Kubernetes, Code Signing, and SSH at a high level with videos and quizzes. Professional CLM courses are deep, hands-on modules (62–122 minutes each) for administrators and engineers who need to actively operate the platform — covering architecture, configuration, integrations, discovery, and advanced workflows. Start with foundational if you're new; move to professional once you're implementing.",
+      "keywords": ["difference", "foundational", "professional", "which course", "beginner", "advanced", "level", "start", "where to begin"]
+    },
+    {
+      "question": "Where should I start on the Academy?",
+      "answer": "If you're new to AppViewX, start with the Foundational courses at https://academy.appviewx.com/page/foundational-courses — they give you a clear overview of CLM, PKIaaS, Kubernetes, Code Signing, and SSH in under 2 hours total. Once you have that foundation, move to the Professional CLM track (https://academy.appviewx.com/page/professional-courses) starting with 'AppViewX CLM Foundations'. If you're focused on automation and workflows, the AVX Automation track (https://academy.appviewx.com/page/avx-automation) can be taken alongside the professional courses.",
+      "keywords": ["where to start", "beginning", "new", "getting started", "first course", "learning path", "recommended order"]
+    },
+    {
+      "question": "How long does it take to complete all the courses?",
+      "answer": "The Foundational track totals approximately 92 minutes across 5 courses (CLM: 17 min, PKIaaS: 26 min, Kubernetes: 8 min, Code Signing: 12 min, SSH: 29 min). The Professional CLM track totals approximately 347 minutes across 4 courses (Foundations: 62 min, Public TLS: 122 min, Private PKI: 100 min, Network Scans: 63 min). The AVX Automation track has 8 self-paced modules with no fixed durations listed. Total structured learning time is roughly 7+ hours.",
+      "keywords": ["how long", "duration", "time", "total", "hours", "minutes", "complete", "finish"]
+    },
+    {
+      "question": "What is PKI and what is PKIaaS?",
+      "answer": "PKI (Public Key Infrastructure) is a framework that uses digital certificates to verify identities, encrypt data, and ensure trust in digital communications. It prevents fraud, secures online banking, emails, and file transfers. PKIaaS (PKI as a Service) is a cloud-delivered version of a Private Certificate Authority (CA) — AppViewX's PKIaaS lets organisations issue and manage internal certificates without building their own CA infrastructure. It supports SCEP, EST, and ACME protocols and integrates with Active Directory Certificate Services (AD CS) and HashiCorp Vault.",
+      "keywords": ["pki", "pkiaas", "public key infrastructure", "what is pki", "private ca", "certificate authority", "cloud", "scep", "est", "acme", "ad cs", "vault"]
+    },
+    {
+      "question": "What is AVX AI Expert?",
+      "answer": "AVX AI Expert is an AI-powered assistant built into the AppViewX platform that lets you query your certificate inventory and platform data using natural language. Instead of running manual reports, you can ask questions like 'Show me certificates expiring in the next 30 days' or 'What certificates were issued last week?' and get instant answers. It's covered in the 'Discovering Certificates with Network Scans and Platform Integrations' professional course.",
+      "keywords": ["ai", "ai expert", "avx ai", "artificial intelligence", "natural language", "query", "intelligent", "assistant"]
+    },
+    {
+      "question": "What is the AVX Automation track?",
+      "answer": "The AVX Automation track (https://academy.appviewx.com/page/avx-automation) covers AppViewX's low-code Visual Workflow automation engine. It has 8 modules: Introduction and Form Development, Functional Palettes (Split, If/Retry, REST, Switch, Subflows), Notification Palettes (Email, Slack), User Experience Palettes, Scripting with Helper Scripts, Variables (Global and Magic), Hooks/Query Explorer/REST API, and Workflow Examples. It's ideal for PKI admins, Infosec, NetOps, SecOps, and DevOps teams who want to automate certificate workflows.",
+      "keywords": ["automation", "avx automation", "visual workflow", "workflow", "automate", "low code", "palette", "scripting", "what is automation track"]
+    },
+    {
+      "question": "What is a Visual Workflow in AppViewX?",
+      "answer": "A Visual Workflow is AppViewX's low-code, drag-and-drop automation builder. You assemble workflows by connecting 'palettes' (pre-built functional blocks) on a canvas — no deep programming required. Palettes handle logic (If/Retry, Switch, Split), timing (Schedule, Delay), notifications (Email, Slack), REST API calls, scripting, and more. Visual Workflows let PKI admins and security teams automate certificate operations like renewal, revocation, and provisioning across complex environments.",
+      "keywords": ["visual workflow", "what is workflow", "drag and drop", "low code", "palette", "canvas", "automation builder", "workflow builder"]
+    },
+    {
+      "question": "What is the difference between Windows Gateway and Integrated Gateway?",
+      "answer": "In AppViewX CLM, a Windows Gateway is a dedicated Windows-based connector used specifically for integrating with Microsoft Certificate Authority (MSCA). An Integrated Gateway is a more flexible, multi-purpose connector that can handle a broader range of CA integrations. Both allow AppViewX to communicate with your internal CA infrastructure for certificate operations like enroll, renew, and revoke. The differences are covered in detail in the 'Building Visibility and Monitoring for Private PKI Certificates' professional course.",
+      "keywords": ["windows gateway", "integrated gateway", "gateway", "difference", "msca", "microsoft ca", "connector", "private pki"]
+    },
+    {
+      "question": "What are the CLM Actions I can perform in AppViewX?",
+      "answer": "AppViewX CLM supports five core certificate operations: Enroll (request and issue a new certificate), Renew (renew an existing certificate before expiry), Revoke (revoke a certificate that is compromised or no longer needed), Regenerate (generate a new key pair and re-issue the certificate), and Reissue (re-issue the certificate with the same key pair). All five actions are covered in the 'Building Visibility and Monitoring for Private PKI Certificates' professional course.",
+      "keywords": ["clm actions", "enroll", "renew", "revoke", "regenerate", "reissue", "operations", "actions", "certificate operations", "what can i do"]
+    },
+    {
+      "question": "What is the Cloud Connector?",
+      "answer": "The Cloud Connector is an AppViewX component that enables connectivity between the AppViewX platform and cloud environments. It handles the communication required for certificate discovery, management, and automation in cloud-based infrastructure. Its requirements and installation procedure are covered in the 'AppViewX CLM Foundations' professional course.",
+      "keywords": ["cloud connector", "connector", "installation", "cloud", "setup", "install", "requirements"]
+    },
+    {
+      "question": "What is LDAP integration in AppViewX?",
+      "answer": "LDAP (Lightweight Directory Access Protocol) integration in AppViewX enables synchronisation with your organisation's directory services (such as Active Directory) for centralised user and group management. Instead of managing users manually in AppViewX, you can sync users and roles from your LDAP directory, streamlining access control and governance. LDAP configuration is covered in the 'Discovering Certificates with Network Scans and Platform Integrations' professional course.",
+      "keywords": ["ldap", "active directory", "directory", "user management", "sync", "authentication", "integration", "sso", "identity"]
+    },
+    {
+      "question": "What is SSO and how do I configure it in AppViewX?",
+      "answer": "SSO (Single Sign-On) allows users to authenticate to AppViewX using their existing enterprise credentials, eliminating the need for separate AppViewX passwords. AppViewX supports SAML and OIDC protocols for SSO. Configuration is covered step-by-step in the 'Discovering Certificates with Network Scans and Platform Integrations' professional course. SSO is recommended for enterprise deployments to improve security and simplify user access.",
+      "keywords": ["sso", "single sign on", "saml", "oidc", "authentication", "login", "enterprise", "configure sso", "setup sso"]
+    },
+    {
+      "question": "What is a CT Log Scan (Certificate Transparency Log Scan)?",
+      "answer": "A Certificate Transparency (CT) Log Scan allows AppViewX to discover certificates issued for your domains by public Certificate Authorities and logged in the publicly available CT logs. This gives you visibility into externally issued certificates that you may not be tracking internally — including certificates issued by shadow IT or unknown parties. CT Log Scans are covered in the 'Building Visibility and Monitoring for Public TLS Certificates' professional course.",
+      "keywords": ["ct log", "certificate transparency", "ct scan", "public", "discovery", "external certificates", "visibility", "transparency"]
+    },
+    {
+      "question": "What format are the courses in?",
+      "answer": "Most courses combine video lessons, quiz questions, and downloadable PDFs. Foundational courses are primarily video-based with embedded quizzes at the end. Professional CLM courses include longer video modules, hands-on walkthroughs, and assessment quizzes. The AVX Automation track is self-paced video content. All courses also include a rating step so learners can provide feedback.",
+      "keywords": ["format", "video", "quiz", "pdf", "how are courses", "learning format", "self-paced"]
+    },
+    {
+      "question": "Who are the professional CLM courses designed for?",
+      "answer": "The Professional CLM track is designed for: New AppViewX users looking for a hands-on starting point, IT managers evaluating the platform's capabilities, and security teams transitioning from manual certificate tracking to automated lifecycle management. Within the track, later courses target PKI and certificate administrators, security engineers, DevOps and platform engineers, compliance and risk management professionals, and PKI architects designing global certificate strategies.",
+      "keywords": ["who is it for", "audience", "professional", "target audience", "security team", "administrator", "engineer", "devops"]
+    },
+    {
+      "question": "What is RBAC in AppViewX?",
+      "answer": "RBAC (Role-Based Access Control) in AppViewX controls who can perform which operations on the platform. It ensures the right people have the right level of access — for example, a read-only auditor role vs. a full certificate administrator role. RBAC is a core platform feature introduced in the CLM Foundations course and applies across all modules including certificate operations, workflow management, and platform administration.",
+      "keywords": ["rbac", "role based access", "access control", "permissions", "roles", "user access", "security", "governance"]
+    },
+    {
+      "question": "What is the Insights Dashboard in AppViewX?",
+      "answer": "The Insights Dashboard in AppViewX provides real-time visibility into your certificate posture, risks, and operational trends. It aggregates data across your certificate inventory to help you track certificates by expiry status, issuing CA, compliance state, and more. It's covered in the 'Discovering Certificates with Network Scans and Platform Integrations' professional course alongside Alerts and Logs.",
+      "keywords": ["insights dashboard", "dashboard", "reporting", "visibility", "posture", "risk", "trends", "real time", "monitoring"]
+    },
+    {
+      "question": "What is a CA Scan?",
+      "answer": "A CA Scan in AppViewX queries a connected Certificate Authority directly to retrieve all certificates issued by that CA — including ones that may not have been discovered through network scans. This gives you a complete, authoritative inventory of certificates issued by your internal CAs and helps identify unmanaged or risky certificates. CA Scans are covered in the 'Building Visibility and Monitoring for Private PKI Certificates' professional course.",
+      "keywords": ["ca scan", "certificate authority scan", "scan", "inventory", "unmanaged", "discovery", "private"]
+    },
+    {
+      "question": "What are Certificate Attributes?",
+      "answer": "Certificate Attributes in AppViewX are custom metadata fields you can add to certificates beyond the standard fields (like subject, expiry, and issuer). They allow you to tag certificates with business context — such as the owning team, application name, environment (prod/dev/staging), or compliance classification. Custom attributes are covered in the 'Discovering Certificates with Network Scans and Platform Integrations' professional course.",
+      "keywords": ["certificate attributes", "attributes", "metadata", "custom fields", "tags", "tagging", "governance", "classification"]
+    },
+    {
+      "question": "What are Magic Variables in Visual Workflows?",
+      "answer": "Magic Variables in AppViewX Visual Workflows are dynamic, context-aware variables that automatically capture and pass data between workflow palettes. They allow you to reference the output of one step as the input to another without manual mapping, making workflows more flexible and data-driven. Magic Variables are covered in two parts in the 'Visual Workflows: Variables' module of the AVX Automation track.",
+      "keywords": ["magic variable", "variables", "dynamic", "data binding", "workflow", "automation", "context"]
+    },
+    {
+      "question": "What is a Subflow in Visual Workflows?",
+      "answer": "A Subflow is a reusable workflow that can be called from within another workflow — similar to a function or subroutine in programming. Subflows help you modularise complex automations, avoid duplication, and maintain consistency across multiple workflows. For example, you might create a subflow for 'send expiry alert' that multiple different workflows all call. Subflows are covered in 'Visual Workflows: Working with Functional Palettes'.",
+      "keywords": ["subflow", "reusable", "modular", "function", "workflow", "automation", "sub workflow"]
+    },
+    {
+      "question": "What are the prerequisites for the AVX Automation courses?",
+      "answer": "The first module (Visual Workflows: Introduction and Form Development) has no listed prerequisites. Subsequent modules recommend completing earlier modules in sequence, particularly the Introduction module which establishes foundational workflow concepts. The Automation track is designed for PKI admins, Infosec, NetOps, SecOps, and DevOps teams — basic familiarity with IT operations is helpful.",
+      "keywords": ["prerequisites", "automation", "requirements", "before", "prior knowledge", "devops", "netops"]
+    },
+    {
+      "question": "What is a Network Scan in AppViewX?",
+      "answer": "A Network Scan in AppViewX actively scans your network infrastructure to discover certificates across servers, load balancers, and endpoints. It identifies certificates regardless of how they were issued — even ones not managed through AppViewX. Configuration includes setting scan targets, ports, protocols, and permissions to ensure thorough coverage without disrupting production traffic. Network Scans are covered in the 'Discovering Certificates with Network Scans and Platform Integrations' professional course.",
+      "keywords": ["network scan", "scan", "discovery", "network", "infrastructure", "endpoints", "load balancer", "ports", "protocols"]
+    },
+    {
+      "question": "Are certifications available on the Academy?",
+      "answer": "Certifications are coming soon! AppViewX is developing industry-recognised certification programmes across the Foundational, Professional, and Automation tracks — including digital badges you can share on LinkedIn and your résumé. You can sign up on the Academy homepage to be notified the moment certifications go live.",
+      "keywords": ["certification", "certificate of completion", "badge", "linkedin", "exam", "credential", "coming soon"]
+    },
+    {
+      "question": "What is the difference between CLM and PKIaaS?",
+      "answer": "AVX CLM (Certificate Lifecycle Management) manages the full lifecycle of SSL/TLS certificates across your enterprise — discovery, tracking, renewal, and revocation regardless of which CA issued them. AVX PKIaaS (PKI as a Service) is specifically about running your own Private Certificate Authority in the cloud — it issues internal certificates using SCEP, EST, and ACME protocols. In practice, many organisations use both: PKIaaS to issue internal certificates, and CLM to manage the full lifecycle of both internally and externally issued certificates.",
+      "keywords": ["difference", "clm vs pkiaas", "pkiaas vs clm", "which is", "ssl", "tls", "private ca", "lifecycle", "comparison"]
+    }
+  ]
+}

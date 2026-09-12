@@ -1,3 +1,5 @@
+const KB = require('../data/knowledge-base.json');
+
 const SYSTEM_PROMPT = `You are the AppViewX Academy Learning Assistant — a friendly, knowledgeable guide for learners on academy.appviewx.com.
 
 ## Academy course catalog and learning paths:
@@ -40,6 +42,60 @@ Browse the full, up-to-date catalog at: https://academy.appviewx.com
 7. Never make up product features or capabilities you are not certain about.
 8. Format responses clearly — use numbered lists for steps, bullet points for features or options.`;
 
+function buildContext(query) {
+  if (!query || !KB) return '';
+  const tokens = query.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(function(t) { return t.length >= 3; });
+  if (!tokens.length) return '';
+
+  function score(keywords) {
+    if (!Array.isArray(keywords)) return 0;
+    return tokens.reduce(function(n, t) {
+      return n + (keywords.some(function(k) { return String(k).toLowerCase().includes(t); }) ? 1 : 0);
+    }, 0);
+  }
+
+  var results = [];
+
+  (KB.courses || []).forEach(function(c) {
+    var searchable = (c.keywords || []).concat(
+      String(c.title || '').toLowerCase().split(/\s+/),
+      String(c.level || '').toLowerCase().split(/\s+/),
+      String(c.description || '').toLowerCase().split(/\s+/)
+    );
+    var s = score(searchable);
+    if (s > 0) {
+      results.push({
+        score: s,
+        text: '**Course: ' + c.title + '**' +
+              (c.url        ? '\nURL: ' + c.url : '') +
+              (c.level      ? '\nLevel: ' + c.level : '') +
+              (c.duration   ? '\nDuration: ' + c.duration : '') +
+              (c.description ? '\nDescription: ' + c.description : '') +
+              (Array.isArray(c.objectives) && c.objectives.length ? '\nObjectives: ' + c.objectives.join('; ') : '') +
+              (c.audience   ? '\nAudience: ' + c.audience : ''),
+      });
+    }
+  });
+
+  (KB.faqs || []).forEach(function(f) {
+    var searchable = (f.keywords || []).concat(
+      String(f.question || '').toLowerCase().split(/\s+/)
+    );
+    var s = score(searchable);
+    if (s > 0) {
+      results.push({
+        score: s,
+        text: '**Q: ' + f.question + '**\nA: ' + f.answer,
+      });
+    }
+  });
+
+  results.sort(function(a, b) { return b.score - a.score; });
+  var top = results.slice(0, 5);
+  if (!top.length) return '';
+  return top.map(function(r) { return r.text; }).join('\n\n');
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin',  '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -64,6 +120,13 @@ module.exports = async function handler(req, res) {
     content: String(m.content).slice(0, 4000),
   }));
 
+  // Build KB context from the latest user message
+  const lastUserMsg = history.length > 0 && history[history.length - 1].role === 'user'
+    ? history[history.length - 1].content : '';
+  const kbContext = buildContext(lastUserMsg);
+  const systemWithContext = SYSTEM_PROMPT +
+    (kbContext ? '\n\n## Relevant knowledge base context for this question:\n' + kbContext : '');
+
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method:  'POST',
@@ -75,7 +138,7 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         model:      'claude-sonnet-5',
         max_tokens: 1024,
-        system:     SYSTEM_PROMPT,
+        system:     systemWithContext,
         messages:   history,
       }),
     });
@@ -106,6 +169,7 @@ module.exports = async function handler(req, res) {
     }
 
     return res.status(200).json({ reply: textBlock.text });
+
 
   } catch (err) {
     console.error('Handler error:', err);
