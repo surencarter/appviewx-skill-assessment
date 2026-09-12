@@ -70,17 +70,18 @@
     '#avx-hdr-ic img{width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;}',
     '#avx-hdr-txt{flex:1!important;min-width:0!important;}',
     '#avx-hdr-name{color:#fff!important;font-size:14px!important;font-weight:700!important;margin:0!important;line-height:1.25!important;}',
-    '#avx-hdr-sub{color:rgba(255,255,255,.72)!important;font-size:11px!important;margin:2px 0 0!important;}',
     '#avx-hdr-btns{display:flex!important;gap:4px!important;align-items:center!important;}',
     '#avx-clr,#avx-max,#avx-cls{',
-      'all:unset;position:relative!important;',
-      'width:28px!important;height:28px!important;border-radius:6px!important;',
-      'background:rgba(255,255,255,.15)!important;color:#fff!important;',
+      'all:unset;position:relative!important;overflow:hidden!important;',
+      'width:32px!important;height:32px!important;border-radius:8px!important;',
+      'background:rgba(255,255,255,.18)!important;',
+      'border:1px solid rgba(255,255,255,.35)!important;',
+      'color:#fff!important;',
       'cursor:pointer!important;display:flex!important;align-items:center!important;',
-      'justify-content:center!important;font-size:13px!important;',
-      'flex-shrink:0!important;transition:background .15s!important;',
+      'justify-content:center!important;font-size:15px!important;',
+      'flex-shrink:0!important;transition:background .15s,border-color .15s!important;',
     '}',
-    '#avx-clr:hover,#avx-max:hover,#avx-cls:hover{background:rgba(255,255,255,.3)!important;}',
+    '#avx-clr:hover,#avx-max:hover,#avx-cls:hover{background:rgba(255,255,255,.32)!important;border-color:rgba(255,255,255,.6)!important;}',
 
     /* Messages area */
     '#avx-msgs{',
@@ -241,8 +242,7 @@
     '<div id="avx-hdr">' +
       '<div id="avx-hdr-ic"><img src="' + ICON + '" alt="AppViewX" /></div>' +
       '<div id="avx-hdr-txt">' +
-        '<div id="avx-hdr-name">AppViewX Academy Assistant</div>' +
-        '<div id="avx-hdr-sub">Powered by Claude &middot; Ask me anything</div>' +
+        '<div id="avx-hdr-name">AVX Academy Assistant</div>' +
       '</div>' +
       '<div id="avx-hdr-btns">' +
         '<button id="avx-clr" aria-label="Clear conversation" title="Clear conversation">&#x1F5D1;</button>' +
@@ -388,7 +388,8 @@
       var chip = document.createElement('button');
       chip.className = 'avx-starter';
       chip.textContent = q;
-      chip.addEventListener('click', function() {
+      chip.addEventListener('click', function(e) {
+        e.stopPropagation();
         el.remove();
         inp.value = q;
         send();
