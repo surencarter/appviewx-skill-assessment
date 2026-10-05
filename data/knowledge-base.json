@@ -52,6 +52,21 @@
         { "title": "Hooks, Query Explorer, Scripts and REST API", "duration": "Self-paced" },
         { "title": "Visual Workflows: Building and Using Workflow Examples", "duration": "Self-paced" }
       ]
+    },
+    {
+      "id": "advanced",
+      "name": "Advanced Courses",
+      "url": "https://academy.appviewx.com/page/advanced-courses",
+      "description": "3 hands-on modules covering endpoint management for enterprise infrastructure — F5 ADC, Linux servers (Apache/Tomcat), and Microsoft IIS. Each module covers the full certificate lifecycle: access control setup, device onboarding, certificate discovery, and automated certificate push operations.",
+      "course_count": 3,
+      "total_duration": "Self-paced",
+      "audience": "PKI administrators, network engineers, Windows/Linux server admins, IIS engineers, IT security teams managing enterprise endpoints with AppViewX",
+      "keywords": ["advanced", "advanced courses", "endpoint", "manage endpoints", "endpoints management", "f5", "linux", "iis", "windows", "adc", "load balancer", "apache", "tomcat", "server", "3 topics", "three topics", "push", "bind", "device onboarding", "certificate push"],
+      "courses": [
+        { "title": "Manage Endpoints: ADC – F5", "duration": "Self-paced" },
+        { "title": "Manage Endpoints: Server – Linux", "duration": "Self-paced" },
+        { "title": "Manage Endpoints: Server – IIS", "duration": "Self-paced" }
+      ]
     }
   ],
   "courses": [
@@ -340,6 +355,94 @@
       "prerequisites": ["All prior Visual Workflows modules recommended"],
       "curriculum": ["Workflow Example One", "Workflow Example Two", "Quiz and Wrap Up"],
       "keywords": ["workflow examples", "end-to-end", "practical", "automation", "build", "examples", "use cases", "demo"]
+    },
+    {
+      "id": "advanced-f5",
+      "title": "Manage Endpoints: ADC – F5",
+      "path": "Advanced Courses",
+      "url": "https://academy.appviewx.com/page/advanced-courses",
+      "duration": "Self-paced",
+      "level": "Advanced",
+      "description": "A complete, hands-on module on how AppViewX centralizes F5 device management and automates the full certificate lifecycle — from initial setup through to renewal and push operations. Covers access-control, device onboarding, certificate discovery, automation workflows, and bulk onboarding strategies.",
+      "objectives": [
+        "Explain how Users, User Groups, Roles, and Resources work together within the AppViewX access-control model",
+        "Add and onboard an F5 device into the AppViewX Inventory",
+        "Understand F5 device prerequisites and validate successful onboarding",
+        "Run certificate discovery scans and manage discovered certificates in AppViewX",
+        "Explain how certificates can be automated through AppViewX workflows",
+        "Understand the relationship between certificate renewal and pushing a certificate to an F5 device",
+        "Apply appropriate access controls when managing F5 devices and certificates"
+      ],
+      "audience": ["PKI Administrators", "Network Operations", "AppViewX Admins", "IT Infrastructure Teams"],
+      "prerequisites": ["Foundational CLM course recommended"],
+      "curriculum": [
+        "L1: Stitching Together Users, User Groups, Roles, and Resources in AppViewX",
+        "L2: Adding F5 Devices to the AppViewX Inventory",
+        "L3: Running Scans and Managing Certificates on F5"
+      ],
+      "keywords": ["advanced", "f5", "adc", "load balancer", "f5 devices", "manage endpoints", "endpoint management", "certificate push", "bulk onboarding", "f5 onboarding", "discovery scan", "network infrastructure", "access control"]
+    },
+    {
+      "id": "advanced-linux",
+      "title": "Manage Endpoints: Server – Linux",
+      "path": "Advanced Courses",
+      "url": "https://academy.appviewx.com/page/advanced-courses",
+      "duration": "Self-paced",
+      "level": "Advanced",
+      "description": "Learn how AppViewX centralizes Linux server management and certificate lifecycle operations — from access control and machine onboarding to Apache Tomcat discovery and certificate automation. Covers RBAC, onboarding, Managed/Monitored/Ignored sync modes, and applying certificates to Apache and Tomcat servers.",
+      "objectives": [
+        "Explain how Users, User Groups, Roles, and Resources work together in AppViewX",
+        "Understand how RBAC controls access to Linux server resources",
+        "Identify prerequisites required before onboarding a Linux server",
+        "Onboard a Linux machine into the AppViewX platform",
+        "Configure Linux communication settings and credentials",
+        "Understand the difference between Managed, Monitored, and Ignored certificate synchronization modes",
+        "Configure certificate discovery paths for Tomcat within AppViewX",
+        "Explain how onboarded Linux and Tomcat servers become part of the certificate lifecycle management process"
+      ],
+      "audience": ["Linux Administrators", "PKI Administrators", "Security Engineers", "DevOps / Platform Teams", "AppViewX Admins"],
+      "prerequisites": ["Foundational CLM course recommended"],
+      "curriculum": [
+        "L1: Stitching Together Users, User Groups, Roles, and Resources in AppViewX",
+        "L2: Onboarding Linux Machines into AppViewX",
+        "L3: Managing Apache and Tomcat Servers with AppViewX",
+        "L4: Steps for Managing Apache and Tomcat",
+        "L5: Configuring Managed Device Discovery Scans for Apache and Tomcat",
+        "L6: Applying Certificates to Apache and Tomcat from AppViewX"
+      ],
+      "keywords": ["advanced", "linux", "linux server", "apache", "tomcat", "apache tomcat", "manage endpoints", "endpoint management", "rbac", "onboarding", "managed monitored ignored", "sync modes", "certificate discovery", "certificate push", "linux admin", "devops"]
+    },
+    {
+      "id": "advanced-iis",
+      "title": "Manage Endpoints: Server – IIS",
+      "path": "Advanced Courses",
+      "url": "https://academy.appviewx.com/page/advanced-courses",
+      "duration": "Self-paced",
+      "level": "Advanced",
+      "description": "Learn how AppViewX centralizes Microsoft IIS management — from Windows Gateway configuration and Microsoft CA integration to certificate discovery, push and bind operations, and access control policies. Covers the full IIS certificate lifecycle in a single centralized platform.",
+      "objectives": [
+        "Explain the purpose of the AppViewX Windows Gateway and why it is required for IIS environments",
+        "Configure connectivity between AppViewX and Windows/IIS environments through the Windows Gateway",
+        "Understand prerequisites for onboarding a Microsoft IIS device",
+        "Configure a Microsoft IIS device within the AppViewX platform",
+        "Configure Microsoft Enterprise CA connectivity through the Windows Gateway",
+        "Run managed device discovery scans against IIS servers",
+        "Push a certificate from AppViewX to an IIS server",
+        "Bind a certificate to an IIS website from within AppViewX",
+        "Configure Certificate Groups and associate them with lifecycle management policies",
+        "Apply RBAC to control access to IIS devices and certificate management operations"
+      ],
+      "audience": ["Windows Administrators", "IIS Engineers", "PKI Administrators", "Security Operations", "AppViewX Admins"],
+      "prerequisites": ["Foundational CLM course recommended"],
+      "curriculum": [
+        "L1: Stitching Together Users, User Groups, Roles, and Resources in AppViewX",
+        "L2: Configuring the Windows Gateway and Managing IIS Devices in AppViewX",
+        "L3: Configuring the Windows Gateway and Microsoft Certificate Authority in AppViewX",
+        "L4: Configuring Managed Device Discovery in AppViewX",
+        "L5: Pushing and Binding a Certificate on an IIS Server in AppViewX",
+        "L6: Configuring RBAC, Certificate Groups, and Policies for IIS Management"
+      ],
+      "keywords": ["advanced", "iis", "windows", "microsoft iis", "windows server", "manage endpoints", "endpoint management", "windows gateway", "microsoft ca", "push bind", "certificate push", "certificate bind", "iis onboarding", "rbac", "certificate groups", "clm policies", "windows admin"]
     }
   ],
   "faqs": [
